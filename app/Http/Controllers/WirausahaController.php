@@ -8,6 +8,8 @@ class WirausahaController extends Controller
 {
     public function index()
     {
+        // login as wirausaha
+        auth()->loginUsingId(3);
         return view('wirausaha.index');
     }
 }

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->integer('role')->default(0); // 0 = customer, 1 = driver, 2 = wirausaha
             $table->rememberToken();
             $table->timestamps();
         });

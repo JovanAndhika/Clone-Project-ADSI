@@ -8,6 +8,8 @@ class CustomerController extends Controller
 {
     public function index()
     {
+        // login as customer
+        auth()->loginUsingId(1);
         return view('customer.index');
     }
 }
