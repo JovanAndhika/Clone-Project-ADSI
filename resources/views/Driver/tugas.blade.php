@@ -26,11 +26,11 @@
             position: relative;
         }
 
-        input[type="checkbox"]{
+        input[type="checkbox"] {
             display: none;
         }
 
-        .wrapper .menu-btn{
+        .wrapper .menu-btn {
             position: absolute;
             top: 10px;
             left: 20px;
@@ -48,10 +48,11 @@
             transition: all 0.3s ease;
         }
 
-        #btn-sidebar:checked ~ .menu-btn{
+        #btn-sidebar:checked~.menu-btn {
             left: 247px;
         }
-        #btn-sidebar:checked ~ .menu-btn i:before{
+
+        #btn-sidebar:checked~.menu-btn i:before {
             position: absolute;
             top: 7px;
             left: 7px;
@@ -69,7 +70,7 @@
             transition: all 0.3s ease;
         }
 
-        #btn-sidebar:checked ~ #sidebar{
+        #btn-sidebar:checked~#sidebar {
             left: 0;
         }
 
@@ -120,6 +121,7 @@
         }
     </style>
 
+    <!-- SIDEBAR -->
     <aside class="wrapper">
         <input type="checkbox" id="btn-sidebar">
         <label for="btn-sidebar" class="menu-btn">
@@ -147,6 +149,13 @@
             </ul>
         </nav>
     </aside>
+
+
+
+    <!-- DAFTAR TUGAS -->
+    <section>
+        
+    </section>
 </body>
 
 </html>
