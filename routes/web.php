@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DriverController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\WirausahaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,4 +20,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/driver', [DriverController::class, 'index']);
+// Customer
+Route::get('customer', [CustomerController::class, 'index']);
+
+// Driver
+Route::get('driver', [DriverController::class, 'index']);
+
+// Wirausaha
+Route::get('wirausaha', [WirausahaController::class, 'index']);
