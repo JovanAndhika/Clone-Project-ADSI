@@ -18,6 +18,6 @@ class DatabaseSeeder extends Seeder
         \App\Models\Wirausaha::factory()->create();
 
         // dummy barang
-        \App\Models\Barang::factory()->count(10)->create();
+        \App\Models\Barang::factory()->count(30)->create();
     }
 }

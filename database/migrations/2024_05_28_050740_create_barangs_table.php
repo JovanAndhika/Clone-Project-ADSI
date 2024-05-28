@@ -21,10 +21,10 @@ return new class extends Migration
         });
 
         // many to many table pivot
-        Schema::create('nota_beli_barang', function (Blueprint $table) {
+        Schema::create('barang_nota_beli', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\NotaBeli::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(\App\Models\Barang::class)->constrained()->cascadeOnDelete();
+            $table->foreignId('barang_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('nota_beli_id')->constrained()->cascadeOnDelete();
             $table->integer('jumlah');
         });
     }
@@ -35,5 +35,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('barangs');
+        Schema::dropIfExists('barang_notabeli');
     }
 };

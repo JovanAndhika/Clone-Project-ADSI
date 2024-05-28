@@ -19,8 +19,10 @@
     @yield('components')
     
     {{-- main content --}}
-    <div class="container">
-        @yield('content')
+    <div class="container py-5">
+        <div class="col-lg-6 mx-auto">
+            @yield('content')
+        </div>
     </div>
 
     {{-- extras for model, etc --}}

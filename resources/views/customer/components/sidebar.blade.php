@@ -8,16 +8,13 @@
         <div class="title">Side Menu</div>
         <ul class="list-items">
             <li>
-                <a href="#"><i class="bi bi-clipboard2-fill"></i>Tugas</a>
+                <a href="{{ route('customer.index') }}"><i class="bi bi-house-door-fill"></i>Home</a>
             </li>
             <li>
-                <a href="#"><i class="bi bi-chat-dots-fill"></i>Chat</a>
+                <a href="{{ route('customer.beli.index') }}"><i class="bi bi-bag-fill"></i>Beli Barang</a>
             </li>
             <li>
-                <a href="#"><i class="bi bi-headset"></i>Bantuan</a>
-            </li>
-            <li>
-                <a href="#"><i class="bi bi-gear-fill"></i>Pengaturan</a>
+                <a href="#"><i class="bi bi-box-fill"></i>Jual Barang</a>
             </li>
             <li>
                 <a href="#"><i class="bi bi-door-closed-fill"></i>Logout</a>

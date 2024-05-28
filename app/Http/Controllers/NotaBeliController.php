@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Barang;
 use App\Models\NotaBeli;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,9 @@ class NotaBeliController extends Controller
      */
     public function index()
     {
-        //
+        return view('customer.nota_beli.barang', [
+            'barang' => Barang::where('stock', '>', '0')->filter(request('search'))->paginate(8)->withQueryString(),
+        ]);
     }
 
     /**
@@ -20,7 +23,7 @@ class NotaBeliController extends Controller
      */
     public function create()
     {
-        //
+        return view('customer.nota_beli.keranjang');
     }
 
     /**
@@ -28,7 +31,28 @@ class NotaBeliController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'barang' => 'required',
+            'alamatCustomer' => 'required',
+        ]);
+
+        $notaBeli = NotaBeli::create([
+            'alamat_customer' => $request->alamatCustomer,
+            'customer_id' => auth()->guard('customer')->id(),
+        ]);
+
+        $barang = json_decode($request->barang);
+
+        foreach ($barang as $item) {
+            $temp = Barang::find($item->id);
+            $temp->stock -= $item->quantity;
+            $temp->save();
+            $notaBeli->barang()->attach($temp, [
+                'jumlah' => $item->quantity
+            ]);
+        }
+
+        return to_route('customer.index')->with('success', 'Pesanan berhasil dibuat!');
     }
 
     /**

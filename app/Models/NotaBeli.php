@@ -11,9 +11,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class NotaBeli extends Model
 {
     use HasFactory;
-
+    
     protected $fillable = [
+        'alamat_customer',
         'customer_id',
+        'status',
         'komplain',
     ];
 
@@ -25,7 +27,7 @@ class NotaBeli extends Model
     }
 
     // relationship
-    public function user(): BelongsTo
+    public function customer(): BelongsTo
     {
         return $this->belongsTo(Customer::class);
     }

@@ -17,6 +17,14 @@ class Barang extends Model
         'stock',
     ];
 
+    // scope filter search
+    public function scopeFilter($query, $filters)
+    {
+        $query->when($filters ?? false, function ($query, $search) {
+            return $query->where('nama', 'like', '%' . $search . '%');
+        });
+    }
+
     // relationship
     public function notabeli(): BelongsToMany
     {
