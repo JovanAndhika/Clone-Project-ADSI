@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Customer;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -26,7 +27,7 @@ class NotaBeli extends Model
     // relationship
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Customer::class);
     }
 
     public function barang(): BelongsToMany

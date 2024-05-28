@@ -9,7 +9,7 @@ class DriverController extends Controller
 {
     public function index(){
         // login as driver
-        auth()->loginUsingId(2);
+        auth()->guard('driver')->loginUsingId(1);
         return view('Driver.tugas');
     }
 }

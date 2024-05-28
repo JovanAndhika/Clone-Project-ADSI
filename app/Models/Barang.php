@@ -25,6 +25,6 @@ class Barang extends Model
 
     public function wirausaha(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Wirausaha::class);
     }
 }

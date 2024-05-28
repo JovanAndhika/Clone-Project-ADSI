@@ -15,9 +15,7 @@ return new class extends Migration
             $table->id();
             $table->boolean('status'); // 0 = belum dibayar, 1 = sudah dibayar
             $table->string('komplain')->nullable;
-            $table->foreignId('customer_id')->constrained(
-                table: 'users', indexName: 'nota_beli_customer_id'
-            )->cascadeOnDelete();
+            $table->foreignId('customer_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

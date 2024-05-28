@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class Wirausaha extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -45,13 +45,6 @@ class User extends Authenticatable
     ];
 
     // relationship
-    // khusus customer
-    public function notabeli(): HasMany
-    {
-        return $this->hasMany(NotaBeli::class);
-    }
-
-    // khusus wirausaha
     public function barang(): HasMany
     {
         return $this->hasMany(Barang::class);

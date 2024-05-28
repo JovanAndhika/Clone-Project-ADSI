@@ -16,9 +16,7 @@ return new class extends Migration
             $table->string('nama');
             $table->integer('harga')->default(0);
             $table->integer('stock')->default(0);
-            $table->foreignId('wirausaha_id')->constrained(
-                table: 'users', indexName: 'barang_wirausaha_id'
-            )->cascadeOnDelete();
+            $table->foreignId('wirausaha_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
 

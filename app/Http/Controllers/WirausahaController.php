@@ -9,7 +9,7 @@ class WirausahaController extends Controller
     public function index()
     {
         // login as wirausaha
-        auth()->loginUsingId(3);
+        auth()->guard('wirausaha')->loginUsingId(1);
         return view('wirausaha.index');
     }
 }

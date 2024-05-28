@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Barang>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Driver>
  */
-class BarangFactory extends Factory
+class DriverFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,10 +17,9 @@ class BarangFactory extends Factory
     public function definition(): array
     {
         return [
-            'nama' => fake()->word(),
-            'harga' => fake()->randomNumber(5),
-            'stock' => fake()->randomNumber(2),
-            'wirausaha_id' => 1,
+            'name' => fake()->name(),
+            'email' => fake()->unique()->safeEmail,
+            'password' => bcrypt('password'),
         ];
     }
 }
