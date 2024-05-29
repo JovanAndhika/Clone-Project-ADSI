@@ -51,7 +51,7 @@
         // on load window, get data cart and render to table
         window.onload = function() {
             const cartData = localStorage.getItem("cart");
-            if (cartData || cartData.length === 0){
+            if (!cartData || cartData.length === 0){
                 // redirect back
                 window.location.href = "{{ route('customer.beli.index') }}";
             }
