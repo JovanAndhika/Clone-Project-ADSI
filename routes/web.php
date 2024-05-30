@@ -21,10 +21,10 @@ Route::get('/', function () {
 });
 
 // Customer
-Route::get('customer', [CustomerController::class, 'index']);
+Route::get('/customer', [CustomerController::class, 'index']);
 
 // Driver
-Route::get('driver', [DriverController::class, 'index']);
+Route::get('/driver', [DriverController::class, 'index']);
 
 // Wirausaha
-Route::get('wirausaha', [WirausahaController::class, 'index']);
+Route::get('/wirausaha', [WirausahaController::class, 'index']);
