@@ -23,7 +23,7 @@ input[type="checkbox"] {
     left: 20px;
     height: 45px;
     width: 45px;
-    z-index: 999;
+    z-index: 1000;
     color: #f1f1f1;
     background: #50577a;
     border: 1px solid #333;
@@ -55,6 +55,7 @@ input[type="checkbox"] {
     overflow: hidden;
     left: -270px;
     transition: all 0.3s ease;
+    z-index: 999;
 }
 
 #btn-sidebar:checked ~ #sidebar {
@@ -105,4 +106,8 @@ input[type="checkbox"] {
 
 #sidebar .list-items li a i {
     margin-right: 20px;
+}
+
+#sidebar ul {
+    padding-left: 0 !important;
 }

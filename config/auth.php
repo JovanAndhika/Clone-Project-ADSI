@@ -40,6 +40,21 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        'customer' => [
+            'driver' => 'session',
+            'provider' => 'customer',
+        ],
+
+        'driver' => [
+            'driver' => 'session',
+            'provider' => 'driver',
+        ],
+
+        'wirausaha' => [
+            'driver' => 'session',
+            'provider' => 'wirausaha',
+        ],
     ],
 
     /*
@@ -60,9 +75,19 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'customer' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => App\Models\Customer::class,
+        ],
+
+        'driver' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Driver::class,
+        ],
+
+        'wirausaha' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Wirausaha::class,
         ],
 
         // 'users' => [

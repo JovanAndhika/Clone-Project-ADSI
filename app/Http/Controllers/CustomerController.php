@@ -8,6 +8,12 @@ class CustomerController extends Controller
 {
     public function index()
     {
-        return view('customer.index');
+        // login as customer
+        auth()->guard('customer')->loginUsingId(1);
+        $nota = auth()->guard('customer')->user()->notaBeli()->get();
+
+        return view('customer.index', [
+            'notaBeli' => $nota,
+        ]);
     }
 }
