@@ -11,6 +11,9 @@
                 <a href="#"><i class="bi bi-clipboard2-fill"></i>Tugas</a>
             </li>
             <li>
+                <a href="{{ route('wirausaha.offer') }}"><i class="bi bi-box"></i>Offer Barang</a>
+            </li>
+            <li>
                 <a href="#"><i class="bi bi-chat-dots-fill"></i>Chat</a>
             </li>
             <li>

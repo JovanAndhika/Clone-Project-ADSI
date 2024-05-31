@@ -62,11 +62,17 @@
                                 <td>{{ $item->harga }}</td>
                                 <td>
                                     @if ($item->status == 0)
-                                        Pending
+                                        <div class="px-2 py-1 bg-info text-center text-light rounded">
+                                            Pending
+                                        </div>
                                     @elseif($item->status == 1)
-                                        Approved
+                                        <div class="px-2 py-1 bg-success text-center text-light rounded">
+                                            Approved
+                                        </div>
                                     @else
-                                        Rejected
+                                        <div class="px-2 py-1 bg-danger text-center text-light rounded">
+                                            Rejected
+                                        </div>
                                     @endif
                                 </td>
                                 <td>

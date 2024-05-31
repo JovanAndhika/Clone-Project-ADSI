@@ -17,6 +17,14 @@ class NotaJualController extends Controller
         return view('customer.nota_jual.index');
     }
 
+    public function indexAdmin()
+    {
+        $notaJual = auth()->guard('customer')->user()->notajual()->get();
+        return view('wirausaha.nota_jual.index', [
+            'notaJual' => $notaJual
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -55,6 +63,19 @@ class NotaJualController extends Controller
         return to_route('customer.index')->with('success', 'Berhasil menjual barang!');
     }
 
+    public function konfirmasiHarga(UpdateNotaJualRequest $request)
+    {
+        NotaJual::where('id', $request->id)->update([
+            'status' => $request->status
+        ]);
+
+        if ($request->status == 1) {
+            return to_route('wirausaha.offer')->with('success', 'Berhasil approve barang!');
+        } else {
+            return to_route('wirausaha.offer')->with('success', 'Berhasil reject barang!');
+        }
+    }
+
     /**
      * Display the specified resource.
      */
@@ -76,7 +97,6 @@ class NotaJualController extends Controller
      */
     public function update(UpdateNotaJualRequest $request, NotaJual $notaJual)
     {
-        //
     }
 
     /**
