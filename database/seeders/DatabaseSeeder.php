@@ -70,7 +70,6 @@ class DatabaseSeeder extends Seeder
 
         // Dummy nota beli
         NotaBeli::create([
-
             'status' => 0,
             'alamat_customer' => 'ssssss',
             'komplain' => 'Tidak ada complain',
@@ -90,7 +89,7 @@ class DatabaseSeeder extends Seeder
         Tugas::create([
             'jenis_tugas' => 'Pengantaran',
             'notabeli_id' => 1,
-            'nama_penerima' => 'John Doe',
+            'nama_penerima' => 'Josh Due',
             'status' => 'belum_diambil',
             'created_at' => now(),
             'updated_at' => now(),

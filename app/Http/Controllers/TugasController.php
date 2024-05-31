@@ -13,18 +13,22 @@ class TugasController extends Controller
         // login as driver
         auth()->guard('driver')->loginUsingId(1);
 
-        //Function ambil model
-        $list_tugas_berlangsung = Tugas::where('status', 'berlangsung')->get();
+        //FUNCTION UNTUK AMBIL MODEL
+        // 1.Tugas delivery/pengantaran menuju customer
+        $list_tugas_berlangsung = Tugas::where('status', 'berlangsung')->with('notabeli.barang')->get();
         $list_tugas_beli = Tugas::where('status', 'belum_diambil')->with('notabeli.barang')->get();
+
+        // 2. Tugas take/penjemputan barang menuju wirausaha
         // $list_tugas_jual = Tugas::where('status', 'belum diambil')->get();
 
+
         return view('driver.tugas', [
-            'list_tugas_beli' => $list_tugas_beli,
             'list_tugas_berlangsung' => $list_tugas_berlangsung,
+            'list_tugas_beli' => $list_tugas_beli,
         ]);
     }
 
-    public function ambilTugas()
+    public function ambilTugas($idTugas)
     {
         
     }

@@ -31,7 +31,7 @@ Route::group(['prefix' => 'customer', 'as' => 'customer.'], function () {
 
 // Driver
 Route::get('/driver', [TugasController::class, 'index']);
-Route::post('/driver/ambilTugas', [TugasController::class, 'ambilTugas']);
+Route::post('/driver/ambilTugas/{idTugas}', [TugasController::class, 'ambilTugas'])->name('ambilTugas');
 
 
 // Wirausaha

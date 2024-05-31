@@ -44,7 +44,7 @@
                 padding-left: 0;
             }
 
-            .belum_diambil {
+            .maintable {
                 padding-top: 2%;
             }
 
@@ -59,6 +59,10 @@
                 border-radius: .8rem;
 
                 overflow: hidden;
+            }
+
+            .modal-backdrop {
+                z-index: 0;
             }
 
             .table__header {
@@ -315,11 +319,12 @@
             }
         </style>
 
-        <div class="belum_diambil">
+
+        <div class="maintable">
             <!-- Table -->
             <main class="table" id="customers_table">
                 <div class="table__header">
-                    <h1>Pesanan Pelanggan</h1>
+                    <h1>LIST TUGAS DRIVER</h1>
                     <div class="input-group">
                         <input type="search" placeholder="Search Data...">
                         <img src="{{ asset('images/search.png') }}" alt="">
@@ -339,7 +344,27 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($list_tugas_berlangsung as $taken)
+                            <tr>
+                                <td> {{ $loop->iteration }} </td>
+                                <td> {{ $taken->nama_penerima }}</td>
+                                <td> {{ $taken->notabeli->alamat_customer }} </td>
+                                <td> {{ $taken->notabeli->created_at }}</td>
+                                <td> {{ $taken->jenis_tugas }}</td>
+                                <td>
+                                    <p class="status shipped">{{ $taken->status }}</p>
+                                </td>
+                                <td>
+                                    <!-- Button trigger modal -->
+                                    <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalBerlangsung{{$loop->iteration}}">
+                                        Detail Tugas
+                                    </button>
+                                </td>
+                            </tr>
+                            @endforeach
 
+
+                            <!-- TABEL TUGAS BELUM DIAMBIL -->
                             @foreach ($list_tugas_beli as $tugas)
                             <tr>
                                 <td> {{ $loop->iteration }} </td>
@@ -350,69 +375,21 @@
                                 <td>
                                     <p class="status pending">{{ $tugas->status }}</p>
                                 </td>
-                                <td> <!-- Button trigger modal -->
-                                    <button class="btn btn-warning" id="openModalBtn{{$loop->iteration}}">Detail Tugas</button>
-
-                                    <!-- Modal -->
-                                    <div id="myModal" class="modal">
-                                        <div class="modal-content">
-                                            <span class="close">&times;</span>
-                                            <p>Nomor Nota: {{ $tugas->notabeli_id }}</p>
-                                            <p>Alamat: {{ $tugas->alamat }}</p>
-                                            <p>Nama penerima: {{ $tugas->nama_penerima }}</p>
-                                            <p>Jenis tugas: {{ $tugas->jenis_tugas }}</p>
-
-                                            <!-- Deskripsi Barang -->
-                                            @foreach ($tugas->notabeli->barang as $barang)
-                                                <p>Nama barang: {{$barang->nama}}</p>
-                                                <p>Jumlah barang: {{ $barang->pivot->jumlah }}</p>
-                                            @endforeach
-                                            <form method="post" action="/driver/ambilTugas">
-                                                @csrf
-                                                <button type="submit" id="btn-ambiltugas" class="btn btn-primary">Ambil tugas</button>
-                                            </form>
-                                        </div>
-                                    </div>
-
-                                    <!-- Script untuk modal -->
-                                    <script>
-                                        // Ambil elemen modal
-                                        var modal = document.getElementById("myModal");
-
-                                        // Ambil tombol yang membuka modal
-                                        var btn = document.getElementById("openModalBtn{{$loop->iteration}}");
-
-                                        // Ambil elemen <span> yang menutup modal
-                                        var span = document.getElementsByClassName("close")[0];
-
-                                        // Ketika tombol diklik, buka modal
-                                        btn.onclick = function() {
-                                            modal.style.display = "block";
-                                        }
-
-                                        // Ketika pengguna mengklik <span> (x), tutup modal
-                                        span.onclick = function() {
-                                            modal.style.display = "none";
-                                        }
-
-                                        // Ketika pengguna mengklik di luar modal, tutup modal
-                                        window.onclick = function(event) {
-                                            if (event.target == modal) {
-                                                modal.style.display = "none";
-                                            }
-                                        }
-                                    </script>
-                                    <!-- END OF MODAL -->
-
+                                <td>
+                                    <!-- Button trigger modal -->
+                                    <button type="submit" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalBlmDiambil{{$loop->iteration}}">
+                                        Detail Tugas
+                                    </button>
                                 </td>
                             </tr>
+                            @endforeach
+
+
                         </tbody>
                     </table>
                 </div>
             </main>
-            @endforeach
         </div>
-
         <script>
             const search = document.querySelector('.input-group input'),
                 table_rows = document.querySelectorAll('tbody tr'),
@@ -467,6 +444,77 @@
             }
         </script>
     </section>
+
+
+
+    <!-- MODAL UNTUK PENGANTARAN BERLANGSUNG -->
+    @foreach($list_tugas_berlangsung as $taken)
+    <div class="modal fade" id="modalBerlangsung{{$loop->iteration}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Nomor Nota: {{ $taken->notabeli_id }}</p>
+                    <p>Alamat: {{ $taken->notabeli->alamat_customer }}</p>
+                    <p>Nama penerima: {{ $taken->nama_penerima }}</p>
+                    <p>Jenis tugas: {{ $taken->jenis_tugas }}</p>
+
+                    <!-- Deskripsi Barang -->
+                    @foreach ($taken->notabeli->barang as $barang)
+                    <p>Nama barang: {{$barang->nama}}</p>
+                    <p>Jumlah barang: {{ $barang->pivot->jumlah }}</p>
+                    @endforeach
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <form method="post" action="{{ route('ambilTugas', ['idTugas' => $taken->id]) }}">
+                        @csrf
+                        <button type="submit" id="btn-ambiltugas" class="btn btn-primary">Ambil tugas</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endforeach
+    <!-- END OF MODAL -->
+
+    <!-- MODAL UNTUK PENGANTARAN BELUM DIAMBIL -->
+    <!-- Modal -->
+    @foreach ($list_tugas_beli as $tugas)
+    <div class="modal fade" id="modalBlmDiambil{{$loop->iteration}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Nomor Nota: {{ $tugas->notabeli_id }}</p>
+                    <p>Alamat: {{ $tugas->notabeli->alamat_customer }}</p>
+                    <p>Nama penerima: {{ $tugas->nama_penerima }}</p>
+                    <p>Jenis tugas: {{ $tugas->jenis_tugas }}</p>
+
+                    <!-- Deskripsi Barang -->
+                    @foreach ($tugas->notabeli->barang as $barang)
+                    <p>Nama barang: {{$barang->nama}}</p>
+                    <p>Jumlah barang: {{ $barang->pivot->jumlah }}</p>
+                    @endforeach
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <form method="post" action="{{ route('ambilTugas', ['idTugas' => $tugas->id]) }}">
+                        @csrf
+                        <button type="submit" id="btn-ambiltugas" class="btn btn-primary">Ambil tugas</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endforeach
+    <!-- END OF MODAL -->
 </body>
 
 </html>

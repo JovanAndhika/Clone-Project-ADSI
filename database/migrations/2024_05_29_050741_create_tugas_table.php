@@ -18,7 +18,6 @@ return new class extends Migration
             $table->unsignedBigInteger('notabeli_id')->nullable(true);
             // $table->foreign('notajual_id')->references('id')->on('nota_jual');
             $table->foreign('notabeli_id')->references('id')->on('nota_belis');
-            $table->string('alamat');
             $table->string('nama_penerima');
             $table->string('status');
             $table->timestamps();
