@@ -30,6 +30,8 @@ Route::group(['prefix' => 'customer', 'as' => 'customer.'], function () {
 
 // Driver
 Route::get('/driver', [DriverController::class, 'index']);
+Route::post('/driver/ambilTugas', [DriverController::class, 'ambilTugas']);
+
 
 // Wirausaha
 Route::get('/wirausaha', [WirausahaController::class, 'index']);

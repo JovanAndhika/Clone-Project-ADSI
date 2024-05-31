@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\NotaBeli;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Tugas extends Model
 {
@@ -18,12 +20,12 @@ class Tugas extends Model
         'status',
     ];
 
-    public function nota_jual(): HasOne
+    public function notajual(): HasOne
     {
-        return $this->hasOne(Nota_Jual::class);
+        return $this->hasOne(NotaJual::class);
     }
 
-    public function nota_beli(): HasOne{
-        return $this->hasOne(Nota_Beli::class);
+    public function notabeli(): HasOne{
+        return $this->hasOne(NotaBeli::class);
     }
 }
