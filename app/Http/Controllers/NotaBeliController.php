@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tugas;
 use App\Models\Barang;
+use App\Models\Customer;
 use App\Models\NotaBeli;
 use Illuminate\Http\Request;
 
@@ -40,6 +42,26 @@ class NotaBeliController extends Controller
             'alamat_customer' => $request->alamatCustomer,
             'customer_id' => auth()->guard('customer')->id(),
         ]);
+
+        
+        // Create Tugas Jovan
+        $id_nota = NotaBeli::select('id')
+        ->where('alamat_customer', $request->alamatCustomer)
+        ->where('customer_id', auth()->guard('customer')->id())
+        ->orderByDesc('created_at')
+        ->limit(1)
+        ->value('id');
+        $nama_customer = Customer::select('name')
+        ->where('id', auth()->guard('customer')->id())
+        ->limit(1)
+        ->value('name');
+        $create_tugas = Tugas::create([
+            'jenis_tugas' => 'Pengantaran',
+            'notabeli_id' => $id_nota,
+            'nama_penerima' => $nama_customer,
+            'status' => 'belum_diambil'
+        ]);
+
 
         $barang = json_decode($request->barang);
 

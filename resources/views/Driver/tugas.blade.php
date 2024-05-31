@@ -470,9 +470,9 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <form method="post" action="{{ route('ambilTugas', ['idTugas' => $taken->id]) }}">
+                    <form method="post" action="{{ route('tugasSelesai', ['idTugas' => $taken->id]) }}">
                         @csrf
-                        <button type="submit" id="btn-ambiltugas" class="btn btn-primary">Ambil tugas</button>
+                        <button type="submit" id="btn-ambiltugas" class="btn btn-success">Tugas Selesai</button>
                     </form>
                 </div>
             </div>
@@ -507,7 +507,7 @@
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <form method="post" action="{{ route('ambilTugas', ['idTugas' => $tugas->id]) }}">
                         @csrf
-                        <button type="submit" id="btn-ambiltugas" class="btn btn-primary">Ambil tugas</button>
+                        <button type="submit" id="btn-ambiltugas" class="btn btn-warning">Ambil tugas</button>
                     </form>
                 </div>
             </div>

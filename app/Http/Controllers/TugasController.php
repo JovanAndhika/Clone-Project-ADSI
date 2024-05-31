@@ -30,6 +30,15 @@ class TugasController extends Controller
 
     public function ambilTugas($idTugas)
     {
-        
+        Tugas::where('id', $idTugas)
+            ->update(['status' => 'berlangsung']);
+        return back();
+    }
+
+    public function tugasSelesai($idTugas)
+    {
+        Tugas::where('id', $idTugas)
+            ->update(['status' => 'selesai']);
+            return back();
     }
 }
