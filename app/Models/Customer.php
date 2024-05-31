@@ -49,4 +49,9 @@ class Customer extends Authenticatable
     {
         return $this->hasMany(NotaBeli::class);
     }
+
+    public function notajual(): HasMany
+    {
+        return $this->hasMany(NotaJual::class);
+    }
 }

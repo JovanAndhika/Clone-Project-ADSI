@@ -4,8 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\TugasController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\NotaJualController;
 use App\Http\Controllers\NotaBeliController;
 use App\Http\Controllers\WirausahaController;
+use App\Models\NotaJual;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +29,7 @@ Route::get('/customer', [CustomerController::class, 'index']);
 Route::group(['prefix' => 'customer', 'as' => 'customer.'], function () {
     Route::get('/', [CustomerController::class, 'index'])->name('index');
     Route::resource('beli', NotaBeliController::class)->only(['index', 'create', 'store']);
+    Route::resource('jual', NotaJualController::class)->only(['index', 'create', 'store']);
 });
 
 // Driver
@@ -41,4 +44,8 @@ Route::group(['prefix' => 'wirausaha', 'as' => 'wirausaha.'], function () {
     Route::resource('barang', BarangController::class)->only(['index', 'create', 'delete', 'update']);
 });
 
-// Route::get('wirausaha', [WirausahaController::class, 'index']);
+// Route::group(['prefix' => 'wirausaha', 'as' => 'wirausaha.'], function(){
+    Route::get('/', [WirausahaController::class, 'index'])->name('index');
+    Route::get('offer', [NotaJualController::class, 'indexAdmin'])->name('offer');
+    Route::post('offer/konfirmasiHarga', [NotaJualController::class, 'konfirmasiHarga'])->name('offer.konfirmasiHarga');
+});
