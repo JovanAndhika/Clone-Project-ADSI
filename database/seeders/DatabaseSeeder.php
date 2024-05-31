@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\Tugas;
 use App\Models\NotaBeli;
+use App\Models\NotaJual;
 use App\Models\Wirausaha;
 use App\Models\JenisBarang;
 use Illuminate\Database\Seeder;
@@ -68,6 +69,29 @@ class DatabaseSeeder extends Seeder
         \App\Models\Barang::factory()->count(50)->create();
 
 
+        // Dummy Nota Jual
+        NotaJual::create([
+            'nama' => 'barang legendaris',
+            'foto' => 'exclusive_path',
+            'status' => 0,
+            'alamat_customer' => 'tidak rahasia',
+            'harga' => 12000,
+            'customer_id' => 1,
+            'wirausaha_id' => 1,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        NotaJual::create([
+            'nama' => 'barang legendaris dua',
+            'foto' => 'exclusive_path',
+            'status' => 0,
+            'alamat_customer' => 'rahasia',
+            'harga' => 12000,
+            'customer_id' => 1,
+            'wirausaha_id' => 2,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
         // Dummy nota beli
         NotaBeli::create([
             'status' => 0,
@@ -98,6 +122,22 @@ class DatabaseSeeder extends Seeder
             'jenis_tugas' => 'Pengantaran',
             'notabeli_id' => 2,
             'nama_penerima' => 'John Doe',
+            'status' => 'berlangsung',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        Tugas::create([
+            'jenis_tugas' => 'Penjemputan',
+            'notajual_id' => 1,
+            'nama_penerima' => 'Josh Row',
+            'status' => 'belum_diambil',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        Tugas::create([
+            'jenis_tugas' => 'Penjemputan',
+            'notajual_id' => 2,
+            'nama_penerima' => 'John Column',
             'status' => 'berlangsung',
             'created_at' => now(),
             'updated_at' => now(),

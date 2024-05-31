@@ -21,6 +21,7 @@ class TugasController extends Controller
         // 2. Tugas take/penjemputan barang menuju wirausaha
         $list_tugas_jual_berlangsung = Tugas::where('status', 'berlangsung')->with('notajual')->get();
         $list_tugas_jual = Tugas::where('status', 'belum diambil')->with('notajual')->get();
+        dd(Tugas::where('status', 'belum diambil')->with('notajual')->get());
 
 
         return view('driver.tugas', [
