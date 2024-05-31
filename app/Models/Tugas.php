@@ -6,6 +6,7 @@ use App\Models\NotaBeli;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Tugas extends Model
 {
@@ -25,7 +26,7 @@ class Tugas extends Model
     //     return $this->hasOne(NotaJual::class);
     // }
 
-    public function notabeli(): HasOne{
-        return $this->hasOne(NotaBeli::class);
+    public function notabeli(): BelongsTo{
+        return $this->belongsTo(NotaBeli::class);
     }
 }

@@ -12,9 +12,9 @@ class TugasController extends Controller
     {
         // login as driver
         auth()->guard('driver')->loginUsingId(1);
-        $list_tugas_berlangsung = Tugas::Where('status', 'berlangsung')->get();
-        $list_tugas_beli = Tugas::with('notabeli')->where('status', 'belum_diambil')->get();
-        // $list_tugas_jual = Tugas::with('notajual')->where('status', 'belum diambil')->get();
+        $list_tugas_berlangsung = Tugas::where('status', 'berlangsung')->get();
+        $list_tugas_beli = Tugas::where('status', 'belum_diambil')->has('notabeli')->get();
+        // $list_tugas_jual = Tugas::where('status', 'belum diambil')->get();
         return view('driver.tugas', [
             'list_tugas_beli' => $list_tugas_beli,
             'list_tugas_berlangsung' => $list_tugas_berlangsung,
