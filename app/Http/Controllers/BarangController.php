@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JenisBarang;
 use Illuminate\Http\Request;
 
 class BarangController extends Controller
@@ -12,8 +13,18 @@ class BarangController extends Controller
     public function index()
     {
         //show all barang that belongs to wirausaha
-        $barang = auth()->guard('wirausaha')->user()->barang()->get();
-        return view('wirausaha.index', compact('barang'));
+        // $barang = auth()->guard('wirausaha')->user()->barang->get();
+        // return view('wirausaha.index', compact('barang'));
+         // login as wirausaha
+         auth()->guard('wirausaha')->loginUsingId(1);
+         $wirausaha = auth()->guard('wirausaha')->user();
+         $barang = $wirausaha->barang;
+         $jenis = JenisBarang::all();
+         return view('wirausaha.index', [
+             'wirausaha' => $wirausaha,
+             'barang' => $barang,
+             'jenis' => $jenis
+         ]);
     }
 
     /**
@@ -63,4 +74,6 @@ class BarangController extends Controller
     {
         //
     }
+
+
 }

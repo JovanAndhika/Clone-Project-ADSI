@@ -40,6 +40,6 @@ class Barang extends Model
 
     public function jenisbarang(): BelongsTo 
     {
-        return $this->belongsTo(JenisBarang::class);
+        return $this->belongsTo(JenisBarang::class, 'jenis_barang_id');
     }
 }
