@@ -42,10 +42,6 @@ Route::post('/driver/tugasSelesai/{idTugas}', [TugasController::class, 'tugasSel
 Route::group(['prefix' => 'wirausaha', 'as' => 'wirausaha.'], function () {
     Route::get('/', [WirausahaController::class, 'index'])->name('index');
     Route::resource('barang', BarangController::class)->only(['index', 'create', 'delete', 'update']);
-});
-
-// Route::group(['prefix' => 'wirausaha', 'as' => 'wirausaha.'], function(){
-    Route::get('/', [WirausahaController::class, 'index'])->name('index');
     Route::get('offer', [NotaJualController::class, 'indexAdmin'])->name('offer');
     Route::post('offer/konfirmasiHarga', [NotaJualController::class, 'konfirmasiHarga'])->name('offer.konfirmasiHarga');
 });
