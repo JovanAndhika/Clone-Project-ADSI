@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JenisBarang;
 use Illuminate\Http\Request;
 
 class WirausahaController extends Controller
@@ -10,6 +11,13 @@ class WirausahaController extends Controller
     {
         // login as wirausaha
         auth()->guard('wirausaha')->loginUsingId(1);
-        return view('wirausaha.index');
+        $barang = auth()->guard('wirausaha')->user()->barang();
+        $jenis = JenisBarang::all();
+        return view('wirausaha.index', [
+            'barang' => $barang,
+            'jenis' => $jenis
+        ]);
+        
     }
+    
 }

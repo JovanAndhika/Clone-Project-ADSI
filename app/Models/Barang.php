@@ -15,6 +15,8 @@ class Barang extends Model
         'nama',
         'harga',
         'stock',
+        'wirausaha_id', 
+        'jenis_barang_id'
     ];
 
     // scope filter search
@@ -34,5 +36,10 @@ class Barang extends Model
     public function wirausaha(): BelongsTo
     {
         return $this->belongsTo(Wirausaha::class);
+    }
+
+    public function jenisbarang(): BelongsTo 
+    {
+        return $this->belongsTo(JenisBarang::class);
     }
 }
