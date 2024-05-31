@@ -30,7 +30,8 @@ class Barang extends Model
     // relationship
     public function notabeli(): BelongsToMany
     {
-        return $this->belongsToMany(NotaBeli::class);
+        return $this->belongsToMany(NotaBeli::class)
+        ->withPivot('jumlah');
     }
 
     public function wirausaha(): BelongsTo

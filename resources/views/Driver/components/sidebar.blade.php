@@ -40,7 +40,7 @@
         height: 100%;
         width: 330px;
         position: relative;
-        z-index: 998;
+        z-index: 1;
     }
 
     input[type="checkbox"] {
@@ -53,7 +53,7 @@
         left: 20px;
         height: 45px;
         width: 45px;
-        z-index: 999;
+        z-index: 2;
         color: #f1f1f1;
         background: #50577A;
         border: 1px solid #333;

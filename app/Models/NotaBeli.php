@@ -35,7 +35,8 @@ class NotaBeli extends Model
 
     public function barang(): BelongsToMany
     {
-        return $this->belongsToMany(Barang::class);
+        return $this->belongsToMany(Barang::class)
+        ->withPivot('jumlah');
     }
 
     public function tugas(): HasOne{

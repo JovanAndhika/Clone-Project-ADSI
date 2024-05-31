@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('tugas', function (Blueprint $table) {
             $table->id();
             $table->string('jenis_tugas');
-            // $table->unsignedBigInteger('nota_jual_id')->nullable(true);
+            // $table->unsignedBigInteger('notajual_id')->nullable(true);
             $table->unsignedBigInteger('notabeli_id')->nullable(true);
-            // $table->foreign('nota_jual_id')->references('id')->on('nota_jual');
+            // $table->foreign('notajual_id')->references('id')->on('nota_jual');
             $table->foreign('notabeli_id')->references('id')->on('nota_belis');
             $table->string('alamat');
             $table->string('nama_penerima');

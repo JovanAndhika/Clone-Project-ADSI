@@ -14,9 +14,8 @@ class Tugas extends Model
     protected $table = 'tugas';
     protected $fillable = [
         'jenis_tugas',
-        'nota_jual_id',
-        'nota_beli_id',
-        'alamat',
+        'notajual_id',
+        'notabeli_id',
         'nama_penerima',
         'status',
     ];

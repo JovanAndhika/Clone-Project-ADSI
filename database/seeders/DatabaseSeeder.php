@@ -90,7 +90,6 @@ class DatabaseSeeder extends Seeder
         Tugas::create([
             'jenis_tugas' => 'Pengantaran',
             'notabeli_id' => 1,
-            'alamat' => 'sssss',
             'nama_penerima' => 'John Doe',
             'status' => 'belum_diambil',
             'created_at' => now(),
@@ -99,7 +98,6 @@ class DatabaseSeeder extends Seeder
         Tugas::create([
             'jenis_tugas' => 'Pengantaran',
             'notabeli_id' => 2,
-            'alamat' => 'sssss',
             'nama_penerima' => 'John Doe',
             'status' => 'berlangsung',
             'created_at' => now(),

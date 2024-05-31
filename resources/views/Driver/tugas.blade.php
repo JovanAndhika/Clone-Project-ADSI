@@ -40,11 +40,11 @@
                 display: flex;
             }
 
-            ul.list-items{
+            ul.list-items {
                 padding-left: 0;
             }
 
-            .belum_diambil{
+            .belum_diambil {
                 padding-top: 2%;
             }
 
@@ -53,7 +53,7 @@
                 width: 82vw;
                 height: 90vh;
                 background-color: #fff5;
-                
+
                 backdrop-filter: blur(7px);
                 box-shadow: 0 .4rem .8rem #0005;
                 border-radius: .8rem;
@@ -271,12 +271,55 @@
             }
         </style>
 
+        <!-- Style untuk modal -->
+        <style>
+            .modal {
+                display: none;
+                /* Awalnya modal disembunyikan */
+                position: fixed;
+                z-index: 1;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                overflow: auto;
+                background-color: rgb(0, 0, 0);
+                background-color: rgba(0, 0, 0, 0.4);
+            }
+
+            /* Modal konten */
+            .modal-content {
+                background-color: #fefefe;
+                margin: 15% auto;
+                padding: 20px;
+                border: 1px solid #888;
+                width: 80%;
+                max-width: 500px;
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            }
+
+            /* Tombol close */
+            .close {
+                color: #aaa;
+                float: right;
+                font-size: 28px;
+                font-weight: bold;
+            }
+
+            .close:hover,
+            .close:focus {
+                color: black;
+                text-decoration: none;
+                cursor: pointer;
+            }
+        </style>
 
         <div class="belum_diambil">
             <!-- Table -->
             <main class="table" id="customers_table">
                 <div class="table__header">
-                    <h1>Customer's Orders</h1>
+                    <h1>Pesanan Pelanggan</h1>
                     <div class="input-group">
                         <input type="search" placeholder="Search Data...">
                         <img src="{{ asset('images/search.png') }}" alt="">
@@ -290,48 +333,76 @@
                                 <th> Pelanggan <span class="icon-arrow">&UpArrow;</span></th>
                                 <th> Alamat <span class="icon-arrow">&UpArrow;</span></th>
                                 <th> Order Date <span class="icon-arrow">&UpArrow;</span></th>
+                                <th> Jenis Tugas <span class="icon-arrow">&UpArrow;</span></th>
                                 <th> Status <span class="icon-arrow">&UpArrow;</span></th>
                                 <th> Detail <span class="icon-arrow">&UpArrow;</span></th>
                             </tr>
                         </thead>
                         <tbody>
 
-                            @foreach ($list_tugas_beli as $lt)
+                            @foreach ($list_tugas_beli as $tugas)
                             <tr>
                                 <td> {{ $loop->iteration }} </td>
-                                <td> <img src="a{{ asset('avatar/Jeet Saru.jpg') }}" alt="">{{ $lt->nama_penerima }}</td>
-                                <td> {{ $lt->alamat }} </td>
-                                <td> {{ $lt->notabeli->created_at }}</td>
+                                <td> {{ $tugas->nama_penerima }}</td>
+                                <td> {{ $tugas->notabeli->alamat_customer }} </td>
+                                <td> {{ $tugas->notabeli->created_at }}</td>
+                                <td> {{ $tugas->jenis_tugas }}</td>
                                 <td>
-                                    <p class="status pending">{{ $lt->status }}</p>
+                                    <p class="status pending">{{ $tugas->status }}</p>
                                 </td>
                                 <td> <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{$loop->iteration}}">
-                                        Detail order
-                                    </button>
+                                    <button class="btn btn-warning" id="openModalBtn{{$loop->iteration}}">Detail Tugas</button>
 
                                     <!-- Modal -->
-                                    <div class="modal fade" id="exampleModal{{$loop->iteration}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Detail Tugas</h1>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
+                                    <div id="myModal" class="modal">
+                                        <div class="modal-content">
+                                            <span class="close">&times;</span>
+                                            <p>Nomor Nota: {{ $tugas->notabeli_id }}</p>
+                                            <p>Alamat: {{ $tugas->alamat }}</p>
+                                            <p>Nama penerima: {{ $tugas->nama_penerima }}</p>
+                                            <p>Jenis tugas: {{ $tugas->jenis_tugas }}</p>
 
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                    <form method="post" action="/driver/ambilTugas">
-                                                        @csrf
-                                                        <button type="submit" class="btn btn-primary">Ambil Tugas</button>
-                                                    </form>
-
-                                                </div>
-                                            </div>
+                                            <!-- Deskripsi Barang -->
+                                            @foreach ($tugas->notabeli->barang as $barang)
+                                                <p>Nama barang: {{$barang->nama}}</p>
+                                                <p>Jumlah barang: {{ $barang->pivot->jumlah }}</p>
+                                            @endforeach
+                                            <form method="post" action="/driver/ambilTugas">
+                                                @csrf
+                                                <button type="submit" id="btn-ambiltugas" class="btn btn-primary">Ambil tugas</button>
+                                            </form>
                                         </div>
                                     </div>
+
+                                    <!-- Script untuk modal -->
+                                    <script>
+                                        // Ambil elemen modal
+                                        var modal = document.getElementById("myModal");
+
+                                        // Ambil tombol yang membuka modal
+                                        var btn = document.getElementById("openModalBtn{{$loop->iteration}}");
+
+                                        // Ambil elemen <span> yang menutup modal
+                                        var span = document.getElementsByClassName("close")[0];
+
+                                        // Ketika tombol diklik, buka modal
+                                        btn.onclick = function() {
+                                            modal.style.display = "block";
+                                        }
+
+                                        // Ketika pengguna mengklik <span> (x), tutup modal
+                                        span.onclick = function() {
+                                            modal.style.display = "none";
+                                        }
+
+                                        // Ketika pengguna mengklik di luar modal, tutup modal
+                                        window.onclick = function(event) {
+                                            if (event.target == modal) {
+                                                modal.style.display = "none";
+                                            }
+                                        }
+                                    </script>
+                                    <!-- END OF MODAL -->
 
                                 </td>
                             </tr>
