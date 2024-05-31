@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\NotaBeliController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BarangController;
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\NotaBeliController;
 use App\Http\Controllers\WirausahaController;
 
 /*
@@ -31,4 +32,9 @@ Route::group(['prefix' => 'customer', 'as' => 'customer.'], function () {
 Route::get('driver', [DriverController::class, 'index']);
 
 // Wirausaha
-Route::get('wirausaha', [WirausahaController::class, 'index']);
+Route::group(['prefix' => 'wirausaha', 'as' => 'wirausaha.'], function () {
+    Route::get('/', [WirausahaController::class, 'index'])->name('index');
+    Route::resource('barang', BarangController::class)->only(['index', 'create', 'delete', 'update']);
+});
+
+// Route::get('wirausaha', [WirausahaController::class, 'index']);
