@@ -20,6 +20,7 @@
             * {
                 margin: 0;
                 padding: 0;
+
                 box-sizing: border-box;
                 font-family: sans-serif;
             }
@@ -37,15 +38,22 @@
             body {
                 min-height: 100vh;
                 display: flex;
-                justify-content: center;
-                align-items: center;
+            }
+
+            ul.list-items{
+                padding-left: 0;
+            }
+
+            .belum_diambil{
+                padding-top: 2%;
             }
 
             main.table {
+                padding-top: 20px;
                 width: 82vw;
                 height: 90vh;
                 background-color: #fff5;
-
+                
                 backdrop-filter: blur(7px);
                 box-shadow: 0 .4rem .8rem #0005;
                 border-radius: .8rem;
@@ -85,8 +93,10 @@
             }
 
             .table__header .input-group img {
-                width: 1.2rem;
-                height: 1.2rem;
+                position: absolute;
+                right: 1%;
+                width: 30px;
+                height: 30px;
             }
 
             .table__header .input-group input {
@@ -269,7 +279,7 @@
                     <h1>Customer's Orders</h1>
                     <div class="input-group">
                         <input type="search" placeholder="Search Data...">
-                        <img src="images/search.png" alt="">
+                        <img src="{{ asset('images/search.png') }}" alt="">
                     </div>
                 </div>
                 <div class="table__body">
@@ -293,7 +303,7 @@
                                 <td> {{ $lt->alamat }} </td>
                                 <td> {{ $lt->notabeli->created_at }}</td>
                                 <td>
-                                    <p class="status pending">Belum diambil</p>
+                                    <p class="status pending">{{ $lt->status }}</p>
                                 </td>
                                 <td> <!-- Button trigger modal -->
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{$loop->iteration}}">
@@ -309,7 +319,7 @@
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    
+
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

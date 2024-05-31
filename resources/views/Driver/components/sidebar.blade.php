@@ -40,6 +40,7 @@
         height: 100%;
         width: 330px;
         position: relative;
+        z-index: 998;
     }
 
     input[type="checkbox"] {
