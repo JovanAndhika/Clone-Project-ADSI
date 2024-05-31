@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tugas;
+use App\Models\Customer;
 use App\Models\NotaJual;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreNotaJualRequest;
@@ -58,6 +60,25 @@ class NotaJualController extends Controller
             'harga' => $validatedData['hargaJual'],
             'foto' => $validatedData['fotoBarang'],
             'customer_id' => $validatedData['customer_id'],
+        ]);
+
+
+        // Create Tugas bagian Jovan
+        $id_nota = NotaJual::select('id')
+        ->where('nama', $validatedData['namaBarang'])
+        ->where('customer_id', $validatedData['customer_id'])
+        ->orderByDesc('created_at')
+        ->limit(1)
+        ->value('id');
+        $nama_customer = Customer::select('name')
+        ->where('id', auth()->guard('customer')->id())
+        ->limit(1)
+        ->value('name');
+        $create_tugas = Tugas::create([
+            'jenis_tugas' => 'Penjemputan',
+            'notabeli_id' => $id_nota,
+            'nama_penerima' => $nama_customer,
+            'status' => 'belum_diambil'
         ]);
 
         return to_route('customer.index')->with('success', 'Berhasil menjual barang!');

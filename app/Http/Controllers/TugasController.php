@@ -19,12 +19,15 @@ class TugasController extends Controller
         $list_tugas_beli = Tugas::where('status', 'belum_diambil')->with('notabeli.barang')->get();
 
         // 2. Tugas take/penjemputan barang menuju wirausaha
-        // $list_tugas_jual = Tugas::where('status', 'belum diambil')->get();
+        $list_tugas_jual_berlangsung = Tugas::where('status', 'berlangsung')->with('notajual')->get();
+        $list_tugas_jual = Tugas::where('status', 'belum diambil')->with('notajual')->get();
 
 
         return view('driver.tugas', [
             'list_tugas_berlangsung' => $list_tugas_berlangsung,
             'list_tugas_beli' => $list_tugas_beli,
+            'list_tugas_jual_berlangsung' => $list_tugas_jual_berlangsung,
+            'list_tugas_jual' => $list_tugas_jual,
         ]);
     }
 

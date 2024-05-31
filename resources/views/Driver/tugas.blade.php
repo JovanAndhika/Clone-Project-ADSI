@@ -337,7 +337,7 @@
                                 <th> No <span class="icon-arrow">&UpArrow;</span></th>
                                 <th> Pelanggan <span class="icon-arrow">&UpArrow;</span></th>
                                 <th> Alamat <span class="icon-arrow">&UpArrow;</span></th>
-                                <th> Order Date <span class="icon-arrow">&UpArrow;</span></th>
+                                <th> Tugas Mulai <span class="icon-arrow">&UpArrow;</span></th>
                                 <th> Jenis Tugas <span class="icon-arrow">&UpArrow;</span></th>
                                 <th> Status <span class="icon-arrow">&UpArrow;</span></th>
                                 <th> Detail <span class="icon-arrow">&UpArrow;</span></th>
@@ -362,6 +362,26 @@
                                 </td>
                             </tr>
                             @endforeach
+                            @foreach ($list_tugas_jual_berlangsung as $taken_jual)
+                            <tr>
+                                <td> {{ $loop->iteration }} </td>
+                                <td> {{ $taken_jual->nama_penerima }}</td>
+                                <td> {{ $taken_jual->notajual->alamat_customer }} </td>
+                                <td> {{ $taken_jual->notajual->created_at }}</td>
+                                <td> {{ $taken_jual->jenis_tugas }}</td>
+                                <td>
+                                    <p class="status shipped">{{ $taken_jual->status }}</p>
+                                </td>
+                                <td>
+                                    <!-- Button trigger modal -->
+                                    <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalJualBerlangsung{{$loop->iteration}}">
+                                        Detail Tugas
+                                    </button>
+                                </td>
+                            </tr>
+                            @endforeach
+
+                            
 
 
                             <!-- TABEL TUGAS BELUM DIAMBIL -->
@@ -378,6 +398,24 @@
                                 <td>
                                     <!-- Button trigger modal -->
                                     <button type="submit" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalBlmDiambil{{$loop->iteration}}">
+                                        Detail Tugas
+                                    </button>
+                                </td>
+                            </tr>
+                            @endforeach
+                            @foreach ($list_tugas_jual as $tugas_jual)
+                            <tr>
+                                <td> {{ $loop->iteration }} </td>
+                                <td> {{ $tugas_jual->nama_penerima }}</td>
+                                <td> {{ $tugas_jual->notajual->alamat_customer }} </td>
+                                <td> {{ $tugas_jual->notajual->created_at }}</td>
+                                <td> {{ $tugas_jual->jenis_tugas }}</td>
+                                <td>
+                                    <p class="status pending">{{ $tugas_jual->status }}</p>
+                                </td>
+                                <td>
+                                    <!-- Button trigger modal -->
+                                    <button type="submit" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalJualBlmDiambil{{$loop->iteration}}">
                                         Detail Tugas
                                     </button>
                                 </td>
@@ -453,10 +491,11 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Pengantaran Berlangsung</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <img src="{{ asset('images/petalokasi.jpg') }}" style="width:auto">
                     <p>Nomor Nota: {{ $taken->notabeli_id }}</p>
                     <p>Alamat: {{ $taken->notabeli->alamat_customer }}</p>
                     <p>Nama penerima: {{ $taken->nama_penerima }}</p>
@@ -481,6 +520,40 @@
     @endforeach
     <!-- END OF MODAL -->
 
+    <!-- MODAL UNTUK PENJEMPUTAN BERLANGSUNG -->
+    @foreach($list_tugas_jual_berlangsung as $taken_jual)
+    <div class="modal fade" id="modalJualBerlangsung{{$loop->iteration}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Penjemputan Berlangsung</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="{{ asset('images/petalokasi.jpg') }}" style="width:auto">
+                    <p>Nomor Nota: {{ $taken_jual->notajual_id }}</p>
+                    <p>Alamat: {{ $taken->notajual->alamat_customer }}</p>
+                    <p>Nama penerima: {{ $taken->nama_penerima }}</p>
+                    <p>Jenis tugas: {{ $taken->jenis_tugas }}</p>
+
+                    <!-- Deskripsi Barang -->
+                    <p>Nama barang: {{$taken_jual->notajual->nama}}</p>
+                    <p>Harga barang: {{ $taken_jual->notajual->harga }}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <form method="post" action="{{ route('tugasSelesai', ['idTugas' => $taken->id]) }}">
+                        @csrf
+                        <button type="submit" id="btn-ambiltugas" class="btn btn-success">Tugas Selesai</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endforeach
+    <!-- END OF MODAL -->
+
+
     <!-- MODAL UNTUK PENGANTARAN BELUM DIAMBIL -->
     <!-- Modal -->
     @foreach ($list_tugas_beli as $tugas)
@@ -492,6 +565,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <img src="{{ asset('images/petalokasi.jpg') }}" style="width:auto">
                     <p>Nomor Nota: {{ $tugas->notabeli_id }}</p>
                     <p>Alamat: {{ $tugas->notabeli->alamat_customer }}</p>
                     <p>Nama penerima: {{ $tugas->nama_penerima }}</p>
@@ -502,6 +576,38 @@
                     <p>Nama barang: {{$barang->nama}}</p>
                     <p>Jumlah barang: {{ $barang->pivot->jumlah }}</p>
                     @endforeach
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <form method="post" action="{{ route('ambilTugas', ['idTugas' => $tugas->id]) }}">
+                        @csrf
+                        <button type="submit" id="btn-ambiltugas" class="btn btn-warning">Ambil tugas</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endforeach
+    <!-- END OF MODAL -->
+
+    @foreach ($list_tugas_jual as $tugas_jual)
+    <div class="modal fade" id="modalJualBlmDiambil{{$loop->iteration}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="{{ asset('images/petalokasi.jpg') }}" style="width:auto">
+                    <p>Nomor Nota: {{ $tugas_jual->notabeli_id }}</p>
+                    <p>Alamat: {{ $tugas_jual->notajual->alamat_customer }}</p>
+                    <p>Nama penerima: {{ $tugas_jual->nama_penerima }}</p>
+                    <p>Jenis tugas: {{ $tugas_jual->jenis_tugas }}</p>
+
+                    <!-- Deskripsi Barang -->
+                    <p>Nama barang: {{$taken_jual->notajual->nama}}</p>
+                    <p>Harga barang: {{ $taken_jual->notajual->harga }}</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

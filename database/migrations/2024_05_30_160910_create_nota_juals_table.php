@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nama');
             $table->string('foto');
             $table->string('status')->default(0); //0 = belum dikonfimasi, 1 = approved, 2 = rejected
+            $table->string('alamat_customer')->nullable(true);
             $table->float('harga');
             $table->foreignId('customer_id')->constrained()->cascadeOnDelete();
             $table->foreignId('wirausaha_id')->nullable()->constrained()->cascadeOnDelete();
