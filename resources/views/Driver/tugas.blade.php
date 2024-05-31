@@ -277,45 +277,9 @@
 
         <!-- Style untuk modal -->
         <style>
-            .modal {
-                display: none;
-                /* Awalnya modal disembunyikan */
-                position: fixed;
-                z-index: 1;
-                left: 0;
-                top: 0;
-                width: 100%;
-                height: 100%;
-                overflow: auto;
-                background-color: rgb(0, 0, 0);
-                background-color: rgba(0, 0, 0, 0.4);
-            }
-
             /* Modal konten */
             .modal-content {
-                background-color: #fefefe;
-                margin: 15% auto;
-                padding: 20px;
-                border: 1px solid #888;
-                width: 80%;
-                max-width: 500px;
-                border-radius: 10px;
-                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            }
-
-            /* Tombol close */
-            .close {
-                color: #aaa;
-                float: right;
-                font-size: 28px;
-                font-weight: bold;
-            }
-
-            .close:hover,
-            .close:focus {
-                color: black;
-                text-decoration: none;
-                cursor: pointer;
+                width: 550px !important;
             }
         </style>
 
@@ -366,7 +330,7 @@
                             <tr>
                                 <td> {{ $loop->iteration }} </td>
                                 <td> {{ $taken_jual->nama_penerima }}</td>
-                                {{-- <td> {{ $taken_jual->notajual->alamat_customer }} </td> --}}
+                                <td> {{ $taken_jual->notajual->alamat_customer }} </td>
                                 <td> {{ $taken_jual->notajual->created_at }}</td>
                                 <td> {{ $taken_jual->jenis_tugas }}</td>
                                 <td>
@@ -381,7 +345,7 @@
                             </tr>
                             @endforeach
 
-                            
+
 
 
                             <!-- TABEL TUGAS BELUM DIAMBIL -->
@@ -407,7 +371,7 @@
                             <tr>
                                 <td> {{ $loop->iteration }} </td>
                                 <td> {{ $tugas_jual->nama_penerima }}</td>
-                               {{-- <td> {{ $tugas_jual->notajual->alamat_customer }} </td> --}}
+                                <td> {{ $tugas_jual->notajual->alamat_customer }} </td>
                                 <td> {{ $tugas_jual->notajual->created_at }}</td>
                                 <td> {{ $tugas_jual->jenis_tugas }}</td>
                                 <td>
@@ -495,7 +459,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <img src="{{ asset('images/petalokasi.jpg') }}" style="width:auto">
+                    <img src="{{ asset('images/petalokasi.jpg') }}" style="width: 500px;">
                     <p>Nomor Nota: {{ $taken->notabeli_id }}</p>
                     <p>Alamat: {{ $taken->notabeli->alamat_customer }}</p>
                     <p>Nama penerima: {{ $taken->nama_penerima }}</p>
@@ -530,11 +494,11 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <img src="{{ asset('images/petalokasi.jpg') }}" style="width:auto">
+                    <img src="{{ asset('images/petalokasi.jpg') }}" style="width:500px">
                     <p>Nomor Nota: {{ $taken_jual->notajual_id }}</p>
-                    {{-- <p>Alamat: {{ $taken->notajual->alamat_customer }}</p> --}}
-                    <p>Nama penerima: {{ $taken->nama_penerima }}</p>
-                    <p>Jenis tugas: {{ $taken->jenis_tugas }}</p>
+                    <p>Alamat: {{ $taken_jual->notajual->alamat_customer }}</p>
+                    <p>Nama penerima: {{ $taken_jual->nama_penerima }}</p>
+                    <p>Jenis tugas: {{ $taken_jual->jenis_tugas }}</p>
 
                     <!-- Deskripsi Barang -->
                     <p>Nama barang: {{$taken_jual->notajual->nama}}</p>
@@ -542,7 +506,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <form method="post" action="{{ route('tugasSelesai', ['idTugas' => $taken->id]) }}">
+                    <form method="post" action="{{ route('tugasSelesai', ['idTugas' => $taken_jual->id]) }}">
                         @csrf
                         <button type="submit" id="btn-ambiltugas" class="btn btn-success">Tugas Selesai</button>
                     </form>
@@ -565,7 +529,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <img src="{{ asset('images/petalokasi.jpg') }}" style="width:auto">
+                    <img src="{{ asset('images/petalokasi.jpg') }}" style="width:500px">
                     <p>Nomor Nota: {{ $tugas->notabeli_id }}</p>
                     <p>Alamat: {{ $tugas->notabeli->alamat_customer }}</p>
                     <p>Nama penerima: {{ $tugas->nama_penerima }}</p>
@@ -599,9 +563,9 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <img src="{{ asset('images/petalokasi.jpg') }}" style="width:auto">
+                    <img src="{{ asset('images/petalokasi.jpg') }}" style="width:500px">
                     <p>Nomor Nota: {{ $tugas_jual->notabeli_id }}</p>
-                    {{-- <p>Alamat: {{ $taken->notajual->alamat_customer }}</p> --}}
+                    <p>Alamat: {{ $tugas_jual->notajual->alamat_customer }}</p>
                     <p>Nama penerima: {{ $tugas_jual->nama_penerima }}</p>
                     <p>Jenis tugas: {{ $tugas_jual->jenis_tugas }}</p>
 
@@ -611,7 +575,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <form method="post" action="{{ route('ambilTugas', ['idTugas' => $tugas->id]) }}">
+                    <form method="post" action="{{ route('ambilTugas', ['idTugas' => $tugas_jual->id]) }}">
                         @csrf
                         <button type="submit" id="btn-ambiltugas" class="btn btn-warning">Ambil tugas</button>
                     </form>
