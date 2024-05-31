@@ -11,9 +11,11 @@ class WirausahaController extends Controller
     {
         // login as wirausaha
         auth()->guard('wirausaha')->loginUsingId(1);
-        $barang = auth()->guard('wirausaha')->user()->barang();
+        $wirausaha = auth()->guard('wirausaha')->user();
+        $barang = $wirausaha->barang;
         $jenis = JenisBarang::all();
         return view('wirausaha.index', [
+            'wirausaha' => $wirausaha,
             'barang' => $barang,
             'jenis' => $jenis
         ]);
