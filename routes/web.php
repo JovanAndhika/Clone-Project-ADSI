@@ -4,6 +4,7 @@ use App\Http\Controllers\NotaBeliController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\NotaJualController;
 use App\Http\Controllers\WirausahaController;
 
 /*
@@ -25,6 +26,7 @@ Route::get('/', function () {
 Route::group(['prefix' => 'customer', 'as' => 'customer.'], function () {
     Route::get('/', [CustomerController::class, 'index'])->name('index');
     Route::resource('beli', NotaBeliController::class)->only(['index', 'create', 'store']);
+    Route::resource('jual', NotaJualController::class)->only(['index', 'create', 'store']);
 });
 
 // Driver
