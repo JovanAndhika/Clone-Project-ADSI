@@ -33,8 +33,12 @@ Route::get('driver', [DriverController::class, 'index']);
 
 // Wirausaha
 Route::group(['prefix' => 'wirausaha', 'as' => 'wirausaha.'], function () {
-    Route::get('/', [BarangController::class, 'index'])->name('index');
-    Route::resource('barang', BarangController::class)->only(['index', 'create', 'delete', 'update']);
+    Route::get('/', [BarangController::class, 'lihatBarang'])->name('index');
+    Route::post('add', [BarangController::class, 'tambahBarang'])->name('add');
+    Route::post('update', [BarangController::class, 'editBarang'])->name('update');
+    Route::delete('delete', [BarangController::class, 'hapusBarang'])->name('delete');
+
+    // Route::resource('/', BarangController::class)->only(['index', 'create', 'delete', 'update']);
 });
 
 // Route::get('wirausaha', [WirausahaController::class, 'index']);
