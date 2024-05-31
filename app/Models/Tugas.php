@@ -20,10 +20,10 @@ class Tugas extends Model
         'status',
     ];
 
-    public function notajual(): HasOne
-    {
-        return $this->hasOne(NotaJual::class);
-    }
+    // public function notajual(): HasOne
+    // {
+    //     return $this->hasOne(NotaJual::class);
+    // }
 
     public function notabeli(): HasOne{
         return $this->hasOne(NotaBeli::class);

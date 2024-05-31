@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BarangController;
-use App\Http\Controllers\DriverController;
+use App\Http\Controllers\TugasController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\NotaBeliController;
 use App\Http\Controllers\WirausahaController;
@@ -30,8 +30,8 @@ Route::group(['prefix' => 'customer', 'as' => 'customer.'], function () {
 });
 
 // Driver
-Route::get('/driver', [DriverController::class, 'index']);
-Route::post('/driver/ambilTugas', [DriverController::class, 'ambilTugas']);
+Route::get('/driver', [TugasController::class, 'index']);
+Route::post('/driver/ambilTugas', [TugasController::class, 'ambilTugas']);
 
 
 // Wirausaha

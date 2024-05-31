@@ -286,7 +286,7 @@
                         </thead>
                         <tbody>
 
-                            @foreach ($list_tugas as $lt)
+                            @foreach ($list_tugas_beli as $lt)
                             <tr>
                                 <td> {{ $loop->iteration }} </td>
                                 <td> <img src="a{{ asset('avatar/Jeet Saru.jpg') }}" alt="">{{ $lt->nama_penerima }}</td>
