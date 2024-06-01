@@ -15,6 +15,7 @@ class NotaJual extends Model
     protected $fillable = [
         'nama',
         'foto',
+        'alamat',
         'status',
         'harga',
         'customer_id',

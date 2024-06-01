@@ -43,6 +43,7 @@ class NotaJualController extends Controller
         // Validate the data
         $validatedData = $request->validate([
             'namaBarang' => 'required|string|max:255',
+            'alamatAmbil' => 'required|string|max:255',
             'hargaJual' => 'required|numeric',
             'fotoBarang' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
@@ -54,11 +55,14 @@ class NotaJualController extends Controller
         }
         $validatedData['customer_id'] = auth()->guard('customer')->id();
 
+        // dd($validatedData);
+
         // Create the object with the validated data
         $notaJual = NotaJual::create([
             'nama' => $validatedData['namaBarang'],
             'harga' => $validatedData['hargaJual'],
             'foto' => $validatedData['fotoBarang'],
+            'alamat' => $validatedData['alamatAmbil'],
             'customer_id' => $validatedData['customer_id'],
         ]);
 

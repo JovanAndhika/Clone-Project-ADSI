@@ -12,6 +12,7 @@
                         <th scope="col">ID</th>
                         <th scope="col">Tanggal Jual</th>
                         <th scope="col">Nama Barang</th>
+                        <th scope="col">Alamat</th>
                         <th scope="col">Harga</th>
                         <th scope="col">Status</th>
                         <th scope="col">Foto</th>
@@ -24,6 +25,7 @@
                             <td>{{ $item->id }}</td>
                             <td>{{ $item->created_at }}</td>
                             <td>{{ $item->nama }}</td>
+                            <td>{{ $item->alamat }}</td>
                             <td>{{ $item->harga }}</td>
                             <td>
                                 @if ($item->status == 0)
