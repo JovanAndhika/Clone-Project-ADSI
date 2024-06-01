@@ -10,6 +10,7 @@ use App\Models\NotaJual;
 use App\Models\Wirausaha;
 use App\Models\JenisBarang;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -73,7 +74,7 @@ class DatabaseSeeder extends Seeder
         NotaJual::create([
             'nama' => 'barang legendaris',
             'foto' => 'exclusive_path',
-            'status' => 0,
+            'status' => 1,
             'alamat_customer' => 'tidak rahasia',
             'harga' => 12000,
             'customer_id' => 1,
@@ -84,7 +85,7 @@ class DatabaseSeeder extends Seeder
         NotaJual::create([
             'nama' => 'barang legendaris dua',
             'foto' => 'exclusive_path',
-            'status' => 0,
+            'status' => 1,
             'alamat_customer' => 'rahasia',
             'harga' => 12000,
             'customer_id' => 1,
@@ -92,9 +93,10 @@ class DatabaseSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+
         // Dummy nota beli
         NotaBeli::create([
-            'status' => 0,
+            'status' => 1,
             'alamat_customer' => 'ssssss',
             'komplain' => 'Tidak ada complain',
             'customer_id' => 1,
@@ -102,14 +104,27 @@ class DatabaseSeeder extends Seeder
             'updated_at' => now(),
         ]);
         NotaBeli::create([
-            'status' => 0,
+            'status' => 1,
             'alamat_customer' => 'ssssss',
             'komplain' => 'Tidak ada complain',
             'customer_id' => 1,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
-        // Dummy Tugas belum diambil
+
+        // Dummy tabel barang_nota_beli
+        DB::table('barang_nota_beli')->insert([
+            ['barang_id' => 24, 'nota_beli_id' => 1, 'jumlah' => 6],
+            ['barang_id' => 20, 'nota_beli_id' => 2, 'jumlah' => 12],
+        ]);
+
+        // Dummy tabel nota_juals
+        DB::table('nota_juals')->insert([
+            ['nama'=> 'barang legendaris', 'foto' => 'exclusive_path', 'status' => 1, 'alamat_customer' => 'tidak rahasia', 'harga' => 12000, 'customer_id' => 1, 'wirausaha_id' => 1, 'created_at' => now(), 'updated_at' => now()],
+            ['nama'=> 'barang legendaris dua', 'foto' => 'exclusive_path', 'status' => 1, 'alamat_customer' => 'rahasia', 'harga' => 14000, 'customer_id' => 1, 'wirausaha_id' => 2, 'created_at' => now(), 'updated_at' => now()]
+        ]);
+
+        // Dummy Tugas
         Tugas::create([
             'jenis_tugas' => 'Pengantaran',
             'notabeli_id' => 1,

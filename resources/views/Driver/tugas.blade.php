@@ -452,7 +452,7 @@
     <!-- MODAL UNTUK PENGANTARAN BERLANGSUNG -->
     @foreach($list_tugas_berlangsung as $taken)
     <div class="modal fade" id="modalBerlangsung{{$loop->iteration}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Pengantaran Berlangsung</h1>
@@ -487,7 +487,7 @@
     <!-- MODAL UNTUK PENJEMPUTAN BERLANGSUNG -->
     @foreach($list_tugas_jual_berlangsung as $taken_jual)
     <div class="modal fade" id="modalJualBerlangsung{{$loop->iteration}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Penjemputan Berlangsung</h1>
@@ -522,7 +522,7 @@
     <!-- Modal -->
     @foreach ($list_tugas_beli as $tugas)
     <div class="modal fade" id="modalBlmDiambil{{$loop->iteration}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
@@ -556,7 +556,7 @@
 
     @foreach ($list_tugas_jual as $tugas_jual)
     <div class="modal fade" id="modalJualBlmDiambil{{$loop->iteration}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>

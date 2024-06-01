@@ -15,13 +15,37 @@ class TugasController extends Controller
 
         //FUNCTION UNTUK AMBIL MODEL
         // 1.Tugas delivery/pengantaran menuju customer
-        $list_tugas_berlangsung = Tugas::where('status', 'berlangsung')->has('notabeli.barang')->get();
-        $list_tugas_beli = Tugas::where('status', 'belum_diambil')->has('notabeli.barang')->get();
+        $list_tugas_berlangsung = Tugas::where('status', 'berlangsung')
+            ->whereHas('notabeli', function ($query) {
+                $query->where('status', 1);
+            })
+            ->with('notabeli.barang')
+            ->get();
+
+        $list_tugas_beli = Tugas::where('status', 'belum_diambil')
+            ->whereHas('notabeli', function ($query) {
+                $query->where('status', 1);
+            })
+            ->with('notabeli.barang')
+            ->get();
+
 
         // 2. Tugas take/penjemputan barang menuju wirausaha
-        $list_tugas_jual_berlangsung = Tugas::where('status', 'berlangsung')->has('notajual')->get();
-        $list_tugas_jual = Tugas::where('status', 'belum_diambil')->has('notajual')->get();
-        
+        $list_tugas_jual_berlangsung = Tugas::where('status', 'berlangsung')
+            ->whereHas('notajual', function ($query) {
+                $query->where('status', 1);
+            })
+            ->with('notajual')
+            ->get();
+            
+        $list_tugas_jual = Tugas::where('status', 'belum_diambil')
+            ->whereHas('notajual', function ($query) {
+                $query->where('status', 1);
+            })
+            ->with('notajual')
+            ->get();
+
+
 
         return view('driver.tugas', [
             'list_tugas_berlangsung' => $list_tugas_berlangsung,
@@ -42,6 +66,6 @@ class TugasController extends Controller
     {
         Tugas::where('id', $idTugas)
             ->update(['status' => 'selesai']);
-            return back();
+        return back();
     }
 }
