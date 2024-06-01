@@ -16,3 +16,8 @@
 @section('components')
     @include('wirausaha.components.sidebar')
 @endsection
+
+
+@section('modal')
+  
+@endsection
