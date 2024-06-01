@@ -20,7 +20,6 @@ class NotaJual extends Model
         'harga',
         'customer_id',
         'wirausaha_id',
-        'alamat_customer',
     ];
 
     // relationship

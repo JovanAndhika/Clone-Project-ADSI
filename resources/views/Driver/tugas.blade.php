@@ -308,7 +308,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($list_tugas_berlangsung as $taken)
+                            @foreach($list_tugas_beli_berlangsung as $taken)
                             <tr>
                                 <td> {{ $loop->iteration }} </td>
                                 <td> {{ $taken->nama_penerima }}</td>
@@ -330,7 +330,7 @@
                             <tr>
                                 <td> {{ $loop->iteration }} </td>
                                 <td> {{ $taken_jual->nama_penerima }}</td>
-                                <td> {{ $taken_jual->notajual->alamat_customer }} </td>
+                                <td> {{ $taken_jual->notajual->alamat }} </td>
                                 <td> {{ $taken_jual->notajual->created_at }}</td>
                                 <td> {{ $taken_jual->jenis_tugas }}</td>
                                 <td>
@@ -371,7 +371,7 @@
                             <tr>
                                 <td> {{ $loop->iteration }} </td>
                                 <td> {{ $tugas_jual->nama_penerima }}</td>
-                                <td> {{ $tugas_jual->notajual->alamat_customer }} </td>
+                                <td> {{ $tugas_jual->notajual->alamat }} </td>
                                 <td> {{ $tugas_jual->notajual->created_at }}</td>
                                 <td> {{ $tugas_jual->jenis_tugas }}</td>
                                 <td>
@@ -450,7 +450,7 @@
 
 
     <!-- MODAL UNTUK PENGANTARAN BERLANGSUNG -->
-    @foreach($list_tugas_berlangsung as $taken)
+    @foreach($list_tugas_beli_berlangsung as $taken)
     <div class="modal fade" id="modalBerlangsung{{$loop->iteration}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
@@ -475,7 +475,7 @@
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <form method="post" action="{{ route('tugasSelesai', ['idTugas' => $taken->id]) }}">
                         @csrf
-                        <button type="submit" id="btn-ambiltugas" class="btn btn-success">Tugas Selesai</button>
+                        <button type="submit" id="btn-TugasSelesai" class="btn btn-success">Tugas Selesai</button>
                     </form>
                 </div>
             </div>
@@ -496,7 +496,7 @@
                 <div class="modal-body">
                     <img src="{{ asset('images/petalokasi.jpg') }}" style="width:500px">
                     <p>Nomor Nota: {{ $taken_jual->notajual_id }}</p>
-                    <p>Alamat: {{ $taken_jual->notajual->alamat_customer }}</p>
+                    <p>Alamat: {{ $taken_jual->notajual->alamat }}</p>
                     <p>Nama penerima: {{ $taken_jual->nama_penerima }}</p>
                     <p>Jenis tugas: {{ $taken_jual->jenis_tugas }}</p>
 
@@ -508,7 +508,7 @@
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <form method="post" action="{{ route('tugasSelesai', ['idTugas' => $taken_jual->id]) }}">
                         @csrf
-                        <button type="submit" id="btn-ambiltugas" class="btn btn-success">Tugas Selesai</button>
+                        <button type="submit" id="btn-TugasSelesai" class="btn btn-success">Tugas Selesai</button>
                     </form>
                 </div>
             </div>
@@ -545,7 +545,7 @@
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <form method="post" action="{{ route('ambilTugas', ['idTugas' => $tugas->id]) }}">
                         @csrf
-                        <button type="submit" id="btn-ambiltugas" class="btn btn-warning">Ambil tugas</button>
+                        <button type="submit" id="btn-AmbilTugas" class="btn btn-warning">Ambil tugas</button>
                     </form>
                 </div>
             </div>
@@ -565,7 +565,7 @@
                 <div class="modal-body">
                     <img src="{{ asset('images/petalokasi.jpg') }}" style="width:500px">
                     <p>Nomor Nota: {{ $tugas_jual->notabeli_id }}</p>
-                    <p>Alamat: {{ $tugas_jual->notajual->alamat_customer }}</p>
+                    <p>Alamat: {{ $tugas_jual->notajual->alamat }}</p>
                     <p>Nama penerima: {{ $tugas_jual->nama_penerima }}</p>
                     <p>Jenis tugas: {{ $tugas_jual->jenis_tugas }}</p>
 
@@ -577,7 +577,7 @@
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <form method="post" action="{{ route('ambilTugas', ['idTugas' => $tugas_jual->id]) }}">
                         @csrf
-                        <button type="submit" id="btn-ambiltugas" class="btn btn-warning">Ambil tugas</button>
+                        <button type="submit" id="btn-AmbilTugas" class="btn btn-warning">Ambil tugas</button>
                     </form>
                 </div>
             </div>

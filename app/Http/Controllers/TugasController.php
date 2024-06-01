@@ -15,7 +15,7 @@ class TugasController extends Controller
 
         //FUNCTION UNTUK AMBIL MODEL
         // 1.Tugas delivery/pengantaran menuju customer
-        $list_tugas_berlangsung = Tugas::where('status', 'berlangsung')
+        $list_tugas_beli_berlangsung = Tugas::where('status', 'berlangsung')
             ->whereHas('notabeli', function ($query) {
                 $query->where('status', 1);
             })
@@ -48,7 +48,7 @@ class TugasController extends Controller
 
 
         return view('driver.tugas', [
-            'list_tugas_berlangsung' => $list_tugas_berlangsung,
+            'list_tugas_beli_berlangsung' => $list_tugas_beli_berlangsung,
             'list_tugas_beli' => $list_tugas_beli,
             'list_tugas_jual_berlangsung' => $list_tugas_jual_berlangsung,
             'list_tugas_jual' => $list_tugas_jual,
