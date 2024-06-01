@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Customer;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -19,6 +20,7 @@ class NotaJual extends Model
         'harga',
         'customer_id',
         'wirausaha_id',
+        'alamat_customer',
     ];
 
     // relationship
@@ -29,5 +31,9 @@ class NotaJual extends Model
     public function wirausaha(): BelongsTo
     {
         return $this->belongsTo(Wirausaha::class);
+    }
+    public function tugas(): HasOne
+    {
+        return $this->hasOne(Tugas::class);
     }
 }

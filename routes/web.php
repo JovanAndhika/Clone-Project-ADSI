@@ -2,10 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BarangController;
-use App\Http\Controllers\DriverController;
+use App\Http\Controllers\TugasController;
 use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\NotaBeliController;
 use App\Http\Controllers\NotaJualController;
+use App\Http\Controllers\NotaBeliController;
 use App\Http\Controllers\WirausahaController;
 use App\Models\NotaJual;
 
@@ -25,6 +25,7 @@ Route::get('/', function () {
 });
 
 // Customer
+Route::get('/customer', [CustomerController::class, 'index']);
 Route::group(['prefix' => 'customer', 'as' => 'customer.'], function () {
     Route::get('/', [CustomerController::class, 'index'])->name('index');
     Route::resource('beli', NotaBeliController::class)->only(['index', 'create', 'store']);
@@ -32,7 +33,10 @@ Route::group(['prefix' => 'customer', 'as' => 'customer.'], function () {
 });
 
 // Driver
-Route::get('driver', [DriverController::class, 'index']);
+Route::get('/driver', [TugasController::class, 'index']);
+Route::post('/driver/ambilTugas/{idTugas}', [TugasController::class, 'ambilTugas'])->name('ambilTugas');
+Route::post('/driver/tugasSelesai/{idTugas}', [TugasController::class, 'tugasSelesai'])->name('tugasSelesai');
+
 
 // Wirausaha
 Route::group(['prefix' => 'wirausaha', 'as' => 'wirausaha.'], function () {
