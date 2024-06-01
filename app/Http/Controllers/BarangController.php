@@ -33,21 +33,35 @@ class BarangController extends Controller
      */
     public function tambahBarang(Request $request)
     {
-        //
+        // return $request;
         $validatedData = $request->validate([
             'nama' => 'required|max:255',
             'harga' => 'required|numeric',
             'stock' => 'required|numeric|max:999',
-            'jenis_barang_id' => 'required|numeric'
+            'jenis_barang_id' => 'required|numeric',
+            'fotoBarang' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'detail' => ''
         ]);
+        // Handle the image file upload
+        if ($request->hasFile('fotoBarang')) {
+            $file = $request->file('fotoBarang');
+            $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+            $extension = $file->getClientOriginalExtension();
+            $fileNameToStore = $originalName . '_' . time() . '_' . uniqid() . '.' . $extension;
+            $validatedData['fotoBarang'] = $file->storeAs('public/ProdukJual', $fileNameToStore);
+
+        }
         $finalData = [
             'nama' => $validatedData['nama'],
             'harga' => $validatedData['harga'],
             'stock' => $validatedData['stock'],
             'wirausaha_id' => auth()->guard('wirausaha')->user()->id,
-            'jenis_barang_id' => $validatedData['jenis_barang_id']
+            'jenis_barang_id' => $validatedData['jenis_barang_id'],
+            'foto' => $validatedData['fotoBarang'],
+            'detail' => $validatedData['detail']
         ];
 
+      
         Barang::create($finalData);
         return redirect()->route('wirausaha.index')->with('success', 'New item has been added');
         // return $request;
@@ -65,7 +79,9 @@ class BarangController extends Controller
             'nama' => 'required|max:255',
             'harga' => 'required|numeric',
             'stock' => 'required|numeric|max:999',
-            'jenis_barang_id' => 'required|numeric'
+            'jenis_barang_id' => 'required|numeric',
+            'fotoBarang' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'detail' => ''
         ]);
     
         $barang = Barang::findOrFail($request->barang_id); // Retrieve the barang with the given ID
@@ -75,7 +91,22 @@ class BarangController extends Controller
         $barang->harga = $validatedData['harga'];
         $barang->stock = $validatedData['stock'];
         $barang->jenis_barang_id = $validatedData['jenis_barang_id'];
-    
+        $barang->detail = $validatedData['detail'];
+        
+        if ($request->hasFile('fotoBarang')) {
+            // Delete the old image
+            $oldImage = public_path('public/ProdukJual/' . $barang->foto);
+            if (file_exists($oldImage)) {
+                @unlink($oldImage);
+            }
+            $file = $request->file('fotoBarang');
+            $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+            $extension = $file->getClientOriginalExtension();
+            $fileNameToStore = $originalName . '_' . time() . '_' . uniqid() . '.' . $extension;
+            $validatedData['fotoBarang'] = $file->storeAs('public/ProdukJual', $fileNameToStore);
+            $barang->foto = $validatedData['fotoBarang'];
+        }
+
         $barang->save(); // Save the barang back to the database
     
         return redirect()->route('wirausaha.index')->with('success', 'Item has been updated');

@@ -46,4 +46,12 @@ Route::group(['prefix' => 'wirausaha', 'as' => 'wirausaha.'], function () {
     Route::delete('delete', [BarangController::class, 'hapusBarang'])->name('delete');
     Route::get('offer', [NotaJualController::class, 'indexAdmin'])->name('offer');
     Route::post('offer/konfirmasiHarga', [NotaJualController::class, 'konfirmasiHarga'])->name('offer.konfirmasiHarga');
+
+    // Route::resource('/', BarangController::class)->only(['index', 'create', 'delete', 'update']);
 });
+
+// Route::get('wirausaha', [WirausahaController::class, 'index']);
+// Route::group(['prefix' => 'wirausaha', 'as' => 'wirausaha.'], function(){
+//     Route::get('/', [WirausahaController::class, 'index'])->name('index');
+    
+// });

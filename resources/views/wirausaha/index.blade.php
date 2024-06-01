@@ -4,86 +4,57 @@
     <h1 class="mx-auto text-center my-3">Wirausaha View</h1>
     @include('components.alert')
 
-    <form action={{ @route('wirausaha.add') }} method="POST" class="mx-auto d-flex flex-column justify-content-center">
-        @csrf
-        <input type="text" name=nama id="nama"
-            class="form-control p-2 mt-2 w-75 mx-auto @error('nama') is-invalid @enderror" placeholder="Nama Barang">
-        @error('nama')
-            <div class="invalid-feedback mx-auto w-75">
-                {{ $message }}
-            </div>
-        @enderror
-        <input type="number" name=harga id="harga"
-            class="form-control p-2 mt-2 w-75 mx-auto @error('harga') is-invalid @enderror" placeholder="Harga Barang">
-        @error('harga')
-            <div class="invalid-feedback mx-auto w-75">
-                {{ $message }}
-            </div>
-        @enderror
-        <input type="number" name=stock id="stok"
-            class="form-control p-2 mt-2 w-75 mx-auto @error('stock') is-invalid @enderror" placeholder="Stok Barang"
-            max="999">
-        @error('stock')
-            <div class="invalid-feedback mx-auto w-75">
-                {{ $message }}
-            </div>
-        @enderror
-        <select class="form-select p-2 my-2 w-50 mx-auto" aria-label="Default select example" name="jenis_barang_id">
-            @foreach ($jenis as $jen)
-                <option value="{{ $jen->id }}">{{ $jen->nama }}</option>
-            @endforeach
-        </select>
-        <input type="submit" id="submit" class="btn btn-primary p-2 my-2 mx-auto w-50">
-    </form>
-
-
-    <div class="my-4" style="position: absolute; left: 50%; transform: translateX(-50%);width: 600px; margin:auto">
-        <table class="d-block table table-hover table-bordered table-striped mx-auto" id="barangtable">
-            <thead class="w-100">
-                <tr>
-                    <th scope="col">No</th>
-                    <th scope="col">Nama</th>
-                    <th scope="col">Harga</th>
-                    <th scope="col">Stok</th>
-                    <th scope="col">Jenis</th>
-                    <th scope="col">Action</th>
-                </tr>
-            </thead>
-            <tbody class="w-100">
-                @foreach ($barang as $index => $w)
-                    <tr>
-                        <th scope="row">{{ $index + 1 }}</th>
-                        <td>{{ $w->nama }}</td>
-                        <td>{{ $w->harga }}</td>
-                        <td>{{ $w->stock }}</td>
-                        <td>{{ $w->jenisbarang->nama }}</td>
-                        <td>
-                            <span class="d-none id" id="{{ $w->id }}">{{ $w->id }}</span>
-                            <span class="d-none" id="Pnama{{ $w->id }}">{{$w->nama}}</span>
-                            <span class="d-none" id="Pprice{{ $w->id }}" >{{$w->harga}}</span>
-                            <span class="d-none" id="Pstock{{ $w->id }}">{{$w->stock}}</span>
-                            <span class="d-none" id="Pcate{{ $w->id }}">{{$w->jenis_barang_id}}</span>
-
-                            <button class="btn btn-warning p-1 mx-1 editButton" data-bs-toggle="modal" data-bs-target="#editModal" id="editButton"><i
-                                    class="bi bi-pencil-square"></i></button>
-                            <form action={{ @route('wirausaha.delete') }} method="post" class="d-inline">
-                                @method('delete')
-                                @csrf
-                                <input type="hidden" name="barang_id" value="{{ $w->id }}">
-                                <button type='submit' class="btn btn-danger mx-1 p-1 d-inline border-0"
-                                    onclick="return confirm('Are You Sure')"><i class="bi bi-trash3-fill"></i>
-                                </button>
-                            </form>
-
-                        </td>
-                    </tr>
+    <div class="shadow-lg rounded col-7 mx-auto">
+        <form action={{ @route('wirausaha.add') }} method="POST"
+            class="mx-auto p-3 d-flex flex-column justify-content-center" enctype="multipart/form-data">
+            @csrf
+            <input type="text" name=nama id="nama"
+                class="form-control p-2 mt-0 w-100 mx-auto @error('nama') is-invalid @enderror" placeholder="Nama Barang">
+            @error('nama')
+                <div class="invalid-feedback mx-auto w-100">
+                    {{ $message }}
+                </div>
+            @enderror
+            <input type="number" name=harga id="harga"
+                class="form-control p-2 mt-2 w-100 mx-auto @error('harga') is-invalid @enderror" placeholder="Harga Barang">
+            @error('harga')
+                <div class="invalid-feedback mx-auto w-100">
+                    {{ $message }}
+                </div>
+            @enderror
+            <input type="number" name=stock id="stok"
+                class="form-control p-2 mt-2 w-100 mx-auto @error('stock') is-invalid @enderror" placeholder="Stok Barang"
+                max="999">
+            @error('stock')
+                <div class="invalid-feedback mx-auto w-100">
+                    {{ $message }}
+                </div>
+            @enderror
+            <textarea name="detail" id="detail"
+                class="form-control p-2 mt-2 w-100 mx-auto @error('detail') is-invalid @enderror" placeholder="Detail Barang"></textarea>
+            @error('detail')
+                <div class="invalid-feedback mx-auto w-100">
+                    {{ $message }}
+                </div>
+            @enderror
+            <input type="file" class="form-control p-2 mt-2 w-100 mx-auto @error('fotoBarang') is-invalid @enderror"
+                id="fotoBarang" name="fotoBarang" accept="image/*" required>
+            @error('fotoBarang')
+                <div class="invalid-feedback mx-auto w-100">
+                    {{ $message }}
+                </div>
+            @enderror
+            <select class="form-select p-2 my-2 w-75 mx-auto" aria-label="Default select example" name="jenis_barang_id">
+                @foreach ($jenis as $jen)
+                    <option value="{{ $jen->id }}">{{ $jen->nama }}</option>
                 @endforeach
-            </tbody>
-        </table>
-
-
+            </select>
+            <input type="submit" id="submit" class="btn btn-primary p-2 mt-2 mx-auto w-50">
+        </form>
     </div>
+@endsection
 
+@section('modal')
     <!-- Modal -->
     <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
         aria-hidden="true">
@@ -96,7 +67,7 @@
                     </button>
                 </div>
                 <form action={{ @route('wirausaha.update') }} method="Post"
-                    class="mx-auto d-flex flex-column justify-content-center w-100">
+                    class="mx-auto d-flex flex-column justify-content-center w-100" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body">
                         <input type="hidden" name="barang_id" id="barang_id">
@@ -125,8 +96,24 @@
                                 {{ $message }}
                             </div>
                         @enderror
-                        <select class="form-select p-2 my-2 w-100 mx-auto  @error('jenis_barang_id') is-invalid @enderror" aria-label="Default select example"
-                            name="jenis_barang_id" id="jenis_barang_id">
+                        <textarea name="detail" id="detail"
+                            class="form-control p-2 mt-2 w-100 mx-auto @error('detail') is-invalid @enderror" placeholder="Detail Barang"></textarea>
+                        @error('detail')
+                            <div class="invalid-feedback mx-auto w-100">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                        <input type="file"
+                            class="form-control p-2 mt-2 w-100 mx-auto @error('fotoBarang') is-invalid @enderror"
+                            id="fotoBarang" name="fotoBarang" accept="image/*" required>
+                        @error('fotoBarang')
+                            <div class="invalid-feedback mx-auto w-100">
+                                {{ $message }}
+                            </div>
+                        @enderror
+
+                        <select class="form-select p-2 my-2 w-100 mx-auto  @error('jenis_barang_id') is-invalid @enderror"
+                            aria-label="Default select example" name="jenis_barang_id" id="jenis_barang_id">
                             @foreach ($jenis as $jen)
                                 <option value="{{ $jen->id }}">{{ $jen->nama }}</option>
                             @endforeach
@@ -142,6 +129,90 @@
             </div>
         </div>
     </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="judulModal">Detail Barang</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="" id="foto" class=" mx-auto d-block"  style="height: 300px; width:300px">
+                    <p class="p-3" id="detail" style="text-align: justify"></p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary w-25" data-bs-dismiss="modal">Close</button>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+@endsection
+
+
+@section('extras')
+    <div class=" container mx-auto text-center">
+        <div class=" d-inline-block shadow-lg p-3">
+            <table class="d-block table table-hover table-bordered table-striped mx-auto w-100" id="barangtable">
+                <thead class="w-100">
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">Nama</th>
+                        <th scope="col">Harga</th>
+                        <th scope="col">Stok</th>
+                        <th scope="col">Jenis</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody class="w-100">
+                    @foreach ($barang as $index => $w)
+                        <tr>
+                            <th scope="row">{{ $index + 1 }}</th>
+                            <td>{{ $w->nama }}</td>
+                            <td>{{ $w->harga }}</td>
+                            <td>{{ $w->stock }}</td>
+                            <td>{{ $w->jenisbarang->nama }}</td>
+                            <td>
+                                <button class="btn btn-success p-1 mx-1 detailButton" data-bs-toggle="modal"
+                                    data-bs-target="#detailModal" id="detailButton" data-nama="{{ $w->nama }}"
+                                    data-harga="{{ $w->harga }}" data-stock="{{ $w->stock }}"
+                                    data-jenis-barang="{{ $w->jenis_barang_id }}" data-foto="{{ $w->foto }}"
+                                    data-detail="{{ $w->detail }}">
+                                    <i class="bi bi-eye"></i>
+                                </button>
+                                <button class="btn btn-warning p-1 mx-1 editButton" data-bs-toggle="modal"
+                                    data-bs-target="#editModal" id="editButton" data-id="{{ $w->id }}"
+                                    data-nama="{{ $w->nama }}" data-harga="{{ $w->harga }}"
+                                    data-stock="{{ $w->stock }}" data-jenis-barang="{{ $w->jenis_barang_id }}"
+                                    data-foto="{{ $w->foto }}" data-detail="{{ $w->detail }}"><i
+                                        class="bi bi-pencil-square"></i></button>
+                                <form action={{ @route('wirausaha.delete') }} method="post" class="d-inline">
+                                    @method('delete')
+                                    @csrf
+                                    <input type="hidden" name="barang_id" value="{{ $w->id }}">
+                                    <button type='submit' class="btn btn-danger mx-1 p-1 d-inline border-0"
+                                        onclick="return confirm('Are You Sure')"><i class="bi bi-trash3-fill"></i>
+                                    </button>
+                                </form>
+
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+
+
+
+        </div>
+
+    </div>
 @endsection
 
 
@@ -149,23 +220,41 @@
     <script>
         $(document).ready(function() {
             new DataTable('#barangtable');
-            $('.editButton').click(function() {
+            $('#editButton').click(function() {
 
                 let modal = $('#editModal');
-                let id = $(this).siblings("span.id").text();
-                console.log(id);
 
                 if (modal.length === 0) {
                     console.error('Modal not found');
                     return;
                 }
-                modal.find('#barang_id').val(id);
-                modal.find('#nama').val($('#Pnama'+id).text());
-                modal.find('#harga').val($('#Pprice'+id).text());
-                modal.find('#stock').val($('#Pstock'+id).text());
-                modal.find('#jenis_barang_id').val($('#Pcate'+id).text());
+                modal.find('#barang_id').val($(this).attr("data-id"));
+                modal.find('#nama').val($(this).attr("data-nama"));
+                modal.find('#harga').val($(this).attr("data-harga"));
+                modal.find('#stock').val($(this).attr("data-stock"));
+                modal.find('#jenis_barang_id').val($(this).attr("data-jenis-barang"));
+                // modal.find('#fotoBarang').val($(this).attr("data-foto"));
+                modal.find('#detail').text($(this).attr("data-detail"));
 
             });
+
+            $('.detailButton').click(function() {
+                let modal = $('#detailModal');
+
+                if (modal.length === 0) {
+                    console.error('Modal not found');
+                    return;
+                }
+                
+                let source = $(this).attr("data-foto");
+                source = '/storage/' + source;
+                modal.find('#foto').attr('src', source));
+                modal.find('#detail').text($(this).attr("data-detail"));
+            });
+
+
+
+
 
 
         });
