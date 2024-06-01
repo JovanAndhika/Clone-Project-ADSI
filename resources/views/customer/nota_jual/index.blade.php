@@ -15,6 +15,16 @@
             @enderror
             <br>
 
+            <label for="alamatAmbil" class="form-label">Alamat Pengambilan</label>
+            <input type="text" class="form-control" id="alamatAmbil" name="alamatAmbil" value="{{ old('alamatAmbil') }}"
+                required>
+            @error('alamatAmbil')
+                <div class="invalid-feedback d-block">
+                    {{ $message }}
+                </div>
+            @enderror
+            <br>
+
             <label for="hargaJual" class="form-label">Harga Jual</label>
             <input type="number" class="form-control" id="hargaJual" name="hargaJual" value="{{ old('hargaJual') }}"
                 required>
