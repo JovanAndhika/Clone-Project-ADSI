@@ -75,7 +75,7 @@ class DatabaseSeeder extends Seeder
             'nama' => 'barang legendaris',
             'foto' => 'exclusive_path',
             'status' => 1,
-            'alamat_customer' => 'tidak rahasia',
+            'alamat' => 'tidak rahasia',
             'harga' => 12000,
             'customer_id' => 1,
             'wirausaha_id' => 1,
@@ -86,7 +86,7 @@ class DatabaseSeeder extends Seeder
             'nama' => 'barang legendaris dua',
             'foto' => 'exclusive_path',
             'status' => 1,
-            'alamat_customer' => 'rahasia',
+            'alamat' => 'rahasia',
             'harga' => 12000,
             'customer_id' => 1,
             'wirausaha_id' => 2,
@@ -119,10 +119,10 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // Dummy tabel nota_juals
-        DB::table('nota_juals')->insert([
-            ['nama'=> 'barang legendaris', 'foto' => 'exclusive_path', 'status' => 1, 'alamat_customer' => 'tidak rahasia', 'harga' => 12000, 'customer_id' => 1, 'wirausaha_id' => 1, 'created_at' => now(), 'updated_at' => now()],
-            ['nama'=> 'barang legendaris dua', 'foto' => 'exclusive_path', 'status' => 1, 'alamat_customer' => 'rahasia', 'harga' => 14000, 'customer_id' => 1, 'wirausaha_id' => 2, 'created_at' => now(), 'updated_at' => now()]
-        ]);
+        // DB::table('nota_juals')->insert([
+        //     ['nama'=> 'barang legendaris', 'foto' => 'exclusive_path', 'status' => 1, 'alamat_customer' => 'tidak rahasia', 'harga' => 12000, 'customer_id' => 1, 'wirausaha_id' => 1, 'created_at' => now(), 'updated_at' => now()],
+        //     ['nama'=> 'barang legendaris dua', 'foto' => 'exclusive_path', 'status' => 1, 'alamat_customer' => 'rahasia', 'harga' => 14000, 'customer_id' => 1, 'wirausaha_id' => 2, 'created_at' => now(), 'updated_at' => now()]
+        // ]);
 
         // Dummy Tugas
         Tugas::create([

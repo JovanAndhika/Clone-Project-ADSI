@@ -16,7 +16,9 @@ class Barang extends Model
         'harga',
         'stock',
         'wirausaha_id', 
-        'jenis_barang_id'
+        'jenis_barang_id',
+        'foto',
+        'detail'
     ];
 
     // scope filter search

@@ -23,7 +23,9 @@ class BarangFactory extends Factory
             'harga' => fake()->randomNumber(3) * 1000,
             'stock' => fake()->randomNumber(2),
             'wirausaha_id' => Wirausaha::inRandomOrder()->first()->id ?? Wirausaha::factory()->create()->id,
-            'jenis_barang_id' =>  JenisBarang::inRandomOrder()->first()->id ?? JenisBarang::factory()->create()->id
+            'jenis_barang_id' =>  JenisBarang::inRandomOrder()->first()->id ?? JenisBarang::factory()->create()->id,
+            'foto' => 'https://source.unsplash.com/random',
+            'detail' => fake()->paragraph(),
         ];
     }
 }
