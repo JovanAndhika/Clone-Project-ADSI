@@ -330,7 +330,7 @@
                             <tr>
                                 <td> {{ $loop->iteration }} </td>
                                 <td> {{ $taken_jual->nama_penerima }}</td>
-                                <td> {{ $taken_jual->notajual->alamat_customer }} </td>
+                                <td> {{ $taken_jual->notajual->alamat }} </td>
                                 <td> {{ $taken_jual->notajual->created_at }}</td>
                                 <td> {{ $taken_jual->jenis_tugas }}</td>
                                 <td>
@@ -371,7 +371,7 @@
                             <tr>
                                 <td> {{ $loop->iteration }} </td>
                                 <td> {{ $tugas_jual->nama_penerima }}</td>
-                                <td> {{ $tugas_jual->notajual->alamat_customer }} </td>
+                                <td> {{ $tugas_jual->notajual->alamat }} </td>
                                 <td> {{ $tugas_jual->notajual->created_at }}</td>
                                 <td> {{ $tugas_jual->jenis_tugas }}</td>
                                 <td>
@@ -496,7 +496,7 @@
                 <div class="modal-body">
                     <img src="{{ asset('images/petalokasi.jpg') }}" style="width:500px">
                     <p>Nomor Nota: {{ $taken_jual->notajual_id }}</p>
-                    <p>Alamat: {{ $taken_jual->notajual->alamat_customer }}</p>
+                    <p>Alamat: {{ $taken_jual->notajual->alamat }}</p>
                     <p>Nama penerima: {{ $taken_jual->nama_penerima }}</p>
                     <p>Jenis tugas: {{ $taken_jual->jenis_tugas }}</p>
 
@@ -565,7 +565,7 @@
                 <div class="modal-body">
                     <img src="{{ asset('images/petalokasi.jpg') }}" style="width:500px">
                     <p>Nomor Nota: {{ $tugas_jual->notabeli_id }}</p>
-                    <p>Alamat: {{ $tugas_jual->notajual->alamat_customer }}</p>
+                    <p>Alamat: {{ $tugas_jual->notajual->alamat }}</p>
                     <p>Nama penerima: {{ $tugas_jual->nama_penerima }}</p>
                     <p>Jenis tugas: {{ $tugas_jual->jenis_tugas }}</p>
 
