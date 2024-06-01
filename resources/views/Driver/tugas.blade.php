@@ -475,7 +475,7 @@
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <form method="post" action="{{ route('tugasSelesai', ['idTugas' => $taken->id]) }}">
                         @csrf
-                        <button type="submit" id="btn-ambiltugas" class="btn btn-success">Tugas Selesai</button>
+                        <button type="submit" id="btn-tugasSelesai" class="btn btn-success">Tugas Selesai</button>
                     </form>
                 </div>
             </div>
@@ -508,7 +508,7 @@
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <form method="post" action="{{ route('tugasSelesai', ['idTugas' => $taken_jual->id]) }}">
                         @csrf
-                        <button type="submit" id="btn-ambiltugas" class="btn btn-success">Tugas Selesai</button>
+                        <button type="submit" id="btn-tugasSelesai" class="btn btn-success">Tugas Selesai</button>
                     </form>
                 </div>
             </div>
