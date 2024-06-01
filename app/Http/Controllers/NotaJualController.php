@@ -80,7 +80,7 @@ class NotaJualController extends Controller
         ->value('name');
         $create_tugas = Tugas::create([
             'jenis_tugas' => 'Penjemputan',
-            'notabeli_id' => $id_nota,
+            'notajual_id' => $id_nota,
             'nama_penerima' => $nama_customer,
             'status' => 'belum_diambil'
         ]);
