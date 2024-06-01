@@ -12,8 +12,9 @@ class NotaJual extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nama', 
-        'foto', 
+        'nama',
+        'foto',
+        'alamat',
         'status',
         'harga',
         'customer_id',
