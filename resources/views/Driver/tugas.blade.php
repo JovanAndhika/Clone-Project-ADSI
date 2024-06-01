@@ -460,7 +460,7 @@
                 </div>
                 <div class="modal-body">
                     <img src="{{ asset('images/petalokasi.jpg') }}" style="width: 500px;">
-                    <p>Nomor Nota: {{ $taken->notabeli_id }}</p>
+                    <p>Id Nota: {{ $taken->notabeli_id }}</p>
                     <p>Alamat: {{ $taken->notabeli->alamat_customer }}</p>
                     <p>Nama penerima: {{ $taken->nama_penerima }}</p>
                     <p>Jenis tugas: {{ $taken->jenis_tugas }}</p>
@@ -475,6 +475,7 @@
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <form method="post" action="{{ route('tugasSelesai', ['idTugas' => $taken->id]) }}">
                         @csrf
+                        <input type="hidden" name="notaBeliId" value="{{ $taken->notabeli_id }}">
                         <button type="submit" id="btn-TugasSelesai" class="btn btn-success">Tugas Selesai</button>
                     </form>
                 </div>
@@ -570,8 +571,8 @@
                     <p>Jenis tugas: {{ $tugas_jual->jenis_tugas }}</p>
 
                     <!-- Deskripsi Barang -->
-                    <p>Nama barang: {{$taken_jual->notajual->nama}}</p>
-                    <p>Harga barang: {{ $taken_jual->notajual->harga }}</p>
+                    <p>Nama barang: {{$tugas_jual->notajual->nama}}</p>
+                    <p>Harga barang: {{ $tugas_jual->notajual->harga }}</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Tugas;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\NotaBeli;
 
 class TugasController extends Controller
 {
@@ -17,14 +18,14 @@ class TugasController extends Controller
         // 1.Tugas delivery/pengantaran menuju customer
         $list_tugas_beli_berlangsung = Tugas::where('status', 'berlangsung')
             ->whereHas('notabeli', function ($query) {
-                $query->where('status', 1);
+                $query->where('status', 0);
             })
             ->with('notabeli.barang')
             ->get();
 
         $list_tugas_beli = Tugas::where('status', 'belum_diambil')
             ->whereHas('notabeli', function ($query) {
-                $query->where('status', 1);
+                $query->where('status', 0);
             })
             ->with('notabeli.barang')
             ->get();
@@ -62,10 +63,12 @@ class TugasController extends Controller
         return back();
     }
 
-    public function tugasSelesai($idTugas)
+    public function tugasSelesai($idTugas, Request $request)
     {
         Tugas::where('id', $idTugas)
             ->update(['status' => 'selesai']);
+        NotaBeli::where('id', $request->notaBeliId)
+            ->update(['status' => 1]);
         return back();
     }
 }
