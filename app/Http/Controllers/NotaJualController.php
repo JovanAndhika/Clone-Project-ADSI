@@ -60,7 +60,7 @@ class NotaJualController extends Controller
             'nama' => $validatedData['namaBarang'],
             'harga' => $validatedData['hargaJual'],
             'foto' => $validatedData['fotoBarang'],
-            'alamat', $validatedData['alamatAmbil'],
+            'alamat' => $validatedData['alamatAmbil'],
             'customer_id' => $validatedData['customer_id'],
         ]);
 

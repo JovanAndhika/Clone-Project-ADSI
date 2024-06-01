@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('nota_juals', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->string('alamat')->nullable();
+            $table->string('alamat');
             $table->string('foto');
             $table->string('status')->default(0); //0 = belum dikonfimasi, 1 = approved, 2 = rejected
             $table->float('harga');
