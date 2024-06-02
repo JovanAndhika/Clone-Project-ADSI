@@ -49,4 +49,9 @@ class Wirausaha extends Authenticatable
     {
         return $this->hasMany(Barang::class);
     }
+
+    public function notajual(): HasMany
+    {
+        return $this->hasMany(NotaJual::class);
+    }
 }

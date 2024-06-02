@@ -21,7 +21,7 @@ class NotaJualController extends Controller
 
     public function indexAdmin()
     {
-        $notaJual = auth()->guard('customer')->user()->notajual()->get();
+        $notaJual = auth()->guard('wirausaha')->user()->notajual()->get();
         return view('wirausaha.nota_jual.index', [
             'notaJual' => $notaJual
         ]);

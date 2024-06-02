@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('stock')->default(0);
             $table->foreignId('wirausaha_id')->constrained()->cascadeOnDelete();
             $table->foreignId('jenis_barang_id')->constrained()->cascadeOnDelete();
-            $table->string('foto');
+            $table->string('foto')->nullable();
             $table->text('detail')->nullable();
             $table->timestamps();
         });

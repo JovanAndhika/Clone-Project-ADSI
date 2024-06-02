@@ -36,10 +36,12 @@ Route::post('/driver/tugasSelesai/{idTugas}', [TugasController::class, 'tugasSel
 
 // Wirausaha
 Route::group(['prefix' => 'wirausaha', 'as' => 'wirausaha.'], function () {
-    Route::get('/', [BarangController::class, 'lihatBarang'])->name('index');
-    Route::post('add', [BarangController::class, 'tambahBarang'])->name('add');
-    Route::post('update', [BarangController::class, 'editBarang'])->name('update');
-    Route::delete('delete', [BarangController::class, 'hapusBarang'])->name('delete');
+    Route::get('/', [WirausahaController::class, 'index'])->name('index');
+    
+    Route::get('barang', [BarangController::class, 'lihatBarang'])->name('barang');
+    Route::post('barang/add', [BarangController::class, 'tambahBarang'])->name('add');
+    Route::post('barang/update', [BarangController::class, 'editBarang'])->name('update');
+    Route::delete('barang/delete', [BarangController::class, 'hapusBarang'])->name('delete');
     Route::get('offer', [NotaJualController::class, 'indexAdmin'])->name('offer');
     Route::post('offer/konfirmasiHarga', [NotaJualController::class, 'konfirmasiHarga'])->name('offer.konfirmasiHarga');
 

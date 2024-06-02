@@ -1,7 +1,7 @@
 @extends('layouts.wirausaha')
 
 @section('content')
-    <h1 class="mx-auto text-center my-3">WELCOME</h1>
+    <h1 class="mx-auto text-center my-3">Product View</h1>
     @include('components.alert')
 
     <div class="shadow-lg rounded col-7 mx-auto">

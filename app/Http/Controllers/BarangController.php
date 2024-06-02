@@ -21,7 +21,7 @@ class BarangController extends Controller
          $wirausaha = auth()->guard('wirausaha')->user();
          $barang = $wirausaha->barang()->with('jenisbarang')->get();
          $jenis = JenisBarang::all();
-         return view('wirausaha.index', [
+         return view('wirausaha.barangView', [
              'wirausaha' => $wirausaha,
              'barang' => $barang,
              'jenis' => $jenis
