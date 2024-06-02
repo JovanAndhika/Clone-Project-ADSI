@@ -48,7 +48,8 @@ class BarangController extends Controller
             $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
             $extension = $file->getClientOriginalExtension();
             $fileNameToStore = $originalName . '_' . time() . '_' . uniqid() . '.' . $extension;
-            $validatedData['fotoBarang'] = $file->storeAs('public/ProdukJual', $fileNameToStore);
+            $filePath = $file->storeAs('public/ProdukJual', $fileNameToStore);
+            $validatedData['fotoBarang'] = str_replace('public/', '', $filePath);
 
         }
         $finalData = [
@@ -63,7 +64,7 @@ class BarangController extends Controller
 
       
         Barang::create($finalData);
-        return redirect()->route('wirausaha.barangView')->with('success', 'New item has been added');
+        return redirect()->route('wirausaha.barang')->with('success', 'New item has been added');
         // return $request;
     }
 
@@ -95,7 +96,7 @@ class BarangController extends Controller
         
         if ($request->hasFile('fotoBarang')) {
             // Delete the old image
-            $oldImage = public_path('public/ProdukJual/' . $barang->foto);
+            $oldImage = public_path("storage/".$barang->foto);
             if (file_exists($oldImage)) {
                 @unlink($oldImage);
             }
@@ -103,13 +104,15 @@ class BarangController extends Controller
             $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
             $extension = $file->getClientOriginalExtension();
             $fileNameToStore = $originalName . '_' . time() . '_' . uniqid() . '.' . $extension;
-            $validatedData['fotoBarang'] = $file->storeAs('public/ProdukJual', $fileNameToStore);
+            $filePath= $file->storeAs('public/ProdukJual', $fileNameToStore);
+                        
+            $validatedData['fotoBarang'] = str_replace('public/', '', $filePath);
             $barang->foto = $validatedData['fotoBarang'];
         }
 
         $barang->save(); // Save the barang back to the database
     
-        return redirect()->route('wirausaha.barangView')->with('success', 'Item has been updated');
+        return redirect()->route('wirausaha.barang')->with('success', 'Item has been updated');
         
 
     }
@@ -123,10 +126,17 @@ class BarangController extends Controller
         //
         $validatedData = $request->validate([
             'barang_id' => 'required|max:255'
-        ]);    
-        \App\Models\Barang::where('id', $validatedData['barang_id'])->delete();
+        ]);  
+        $barang = \App\Models\Barang::where('id', $validatedData['barang_id'])->first();
+        
+        $oldImage = public_path("storage/".$barang->foto);
+        if (file_exists($oldImage)) {
+            @unlink($oldImage);
+        }
+    
+        $barang->delete();
         // $prop->delete();
-        return redirect()->route('wirausaha.barangView')->with('success', 'Your item has been deleted');
+        return redirect()->route('wirausaha.barang')->with('success', 'Your item has been deleted');
     }
 
 
