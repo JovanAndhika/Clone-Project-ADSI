@@ -41,7 +41,6 @@ class NotaJualController extends Controller
     public function store(StoreNotaJualRequest $request)
     {
         // Validate the data
-        @dd($request->fotoBarang);
         $validatedData = $request->validate([
             'namaBarang' => 'required|string|max:255',
             'alamatAmbil' => 'required|string|max:255',

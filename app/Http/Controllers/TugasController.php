@@ -73,7 +73,7 @@ class TugasController extends Controller
         Tugas::where('id', $idTugas)
             ->update(['status' => 'selesai']);
         NotaBeli::where('id', $request->notaBeliId)
-            ->setStatusPembayaran();
+            ->update(['status' => 1]);
         return back();
     }
 }
