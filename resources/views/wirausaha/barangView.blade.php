@@ -273,7 +273,7 @@
                     console.log("tidak ada");
                 }
                 else {
-                    // source ='/storage/'+source;
+                    source ='/storage/'+source;
                     console.log("ada");
                 }
                 
