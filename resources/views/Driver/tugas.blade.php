@@ -473,7 +473,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <form method="post" action="{{ route('tugasSelesai', ['idTugas' => $taken->id]) }}">
+                    <form method="post" action="{{ route('tugasSelesaiAmbil', ['idTugas' => $taken->id]) }}">
                         @csrf
                         <input type="hidden" name="notaBeliId" value="{{ $taken->nota_beli_id }}">
                         <button type="submit" id="btn-TugasSelesai" class="btn btn-success">Tugas Selesai</button>
