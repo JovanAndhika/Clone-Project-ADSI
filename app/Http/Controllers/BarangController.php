@@ -63,7 +63,7 @@ class BarangController extends Controller
 
       
         Barang::create($finalData);
-        return redirect()->route('wirausaha.index')->with('success', 'New item has been added');
+        return redirect()->route('wirausaha.barangView')->with('success', 'New item has been added');
         // return $request;
     }
 
@@ -109,7 +109,7 @@ class BarangController extends Controller
 
         $barang->save(); // Save the barang back to the database
     
-        return redirect()->route('wirausaha.index')->with('success', 'Item has been updated');
+        return redirect()->route('wirausaha.barangView')->with('success', 'Item has been updated');
         
 
     }
@@ -126,7 +126,7 @@ class BarangController extends Controller
         ]);    
         \App\Models\Barang::where('id', $validatedData['barang_id'])->delete();
         // $prop->delete();
-        return redirect()->route('wirausaha.index')->with('success', 'Your item has been deleted');
+        return redirect()->route('wirausaha.barangView')->with('success', 'Your item has been deleted');
     }
 
 
