@@ -68,7 +68,7 @@ class TugasController extends Controller
         return back();
     }
 
-    public function tugasSelesaiAmbil($idTugas, Request $request)
+    public function tugasSelesaiAntar($idTugas, Request $request)
     {
         Tugas::where('id', $idTugas)
             ->update(['status' => 'selesai']);
