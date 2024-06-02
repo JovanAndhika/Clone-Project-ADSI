@@ -94,7 +94,7 @@
                     </tbody>
                 </table>
             </div>
-        </section>
+        </div>
     @endif
 @endsection
 
