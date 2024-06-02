@@ -81,7 +81,7 @@
 @endsection
 
 
-@section('extras')
+@section('modal')
     {{-- modal foto --}}
     <div class="modal fade" id="modalFotoBarang" tabindex="-1" data-id="0">
         <div class="modal-dialog modal-dialog-centered">
