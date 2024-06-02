@@ -5,7 +5,7 @@
 
     @if ($notaBeli->count() > 0)
         <div class=" shadow-lg rounded bg-light bg-opacity-50 p-3">
-            <h2 class="text-center">Pesanan In Progress</h2>
+            <h2 class="text-center">Beli Barang</h2>
             <div class="table-responsive">
                 <table class="table">
                     <thead>
@@ -46,7 +46,7 @@
 
     @if ($notaJual->count() > 0)
         <div class=" shadow-lg rounded bg-light bg-opacity-50 p-3 mt-4">
-            <h2 class="text-center">Barang Jual In Progress</h2>
+            <h2 class="text-center">Barang Jual</h2>
             <div class="table-responsive">
                 <table class="table">
                     <thead>
