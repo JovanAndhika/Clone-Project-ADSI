@@ -162,10 +162,27 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="modalFotoBarang">Foto Barang</h1>
+
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <img src="" style="max-width:100%">
+                    <div
+                        style="    
+                        position: relative;
+                        width: 100%;
+                        padding-top: 80%;
+                        /* This sets the aspect ratio to 4:3. Adjust this value to get the aspect ratio you want. */
+                        overflow: hidden;
+                        transform-style: preserve-3d;
+                        transition: transform 1s;">
+                        <img src="" id="foto" class=" mx-auto"
+                            style="object-fit: cover;position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        backface-visibility: hidden;">
+                    </div>
                 </div>
             </div>
         </div>
@@ -181,6 +198,7 @@
                 </div>
                 <div class="modal-body">
                     {{-- id, tanggal, dan status nota --}}
+
                     <div class="d-flex justify-content-between">
                         <div>
                             <div>
@@ -265,7 +283,13 @@
 
                 // masukan id, tanggal, status nota, alamat pengirman, dan nama wirausaha
                 idNota.textContent = nota.id;
-                formattedTanggal = new Date(nota.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' });
+                formattedTanggal = new Date(nota.created_at).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    hour: 'numeric',
+                    minute: 'numeric'
+                });
                 tanggalNota.textContent = formattedTanggal;
                 alamatPengiriman.textContent = nota.alamat_customer;
                 if (nota.tugas.status == 'belum_diambil')

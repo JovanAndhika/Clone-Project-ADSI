@@ -141,7 +141,7 @@
                     $(this).removeClass('hover');
                     next();
                 });
-            }, 20);
+            }, 10);
         })
     </script>
     <section class="auto-bg">
