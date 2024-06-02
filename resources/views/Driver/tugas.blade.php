@@ -312,8 +312,8 @@
                             <tr>
                                 <td> {{ $loop->iteration }} </td>
                                 <td> {{ $taken->nama_penerima }}</td>
-                                <td> {{ $taken->notabeli->alamat_customer }} </td>
-                                <td> {{ $taken->notabeli->created_at }}</td>
+                                <td> {{ $taken->nota_beli->alamat_customer }} </td>
+                                <td> {{ $taken->nota_beli->created_at }}</td>
                                 <td> {{ $taken->jenis_tugas }}</td>
                                 <td>
                                     <p class="status shipped">{{ $taken->status }}</p>
@@ -330,8 +330,8 @@
                             <tr>
                                 <td> {{ $loop->iteration }} </td>
                                 <td> {{ $taken_jual->nama_penerima }}</td>
-                                <td> {{ $taken_jual->notajual->alamat }} </td>
-                                <td> {{ $taken_jual->notajual->created_at }}</td>
+                                <td> {{ $taken_jual->nota_jual->alamat }} </td>
+                                <td> {{ $taken_jual->nota_jual->created_at }}</td>
                                 <td> {{ $taken_jual->jenis_tugas }}</td>
                                 <td>
                                     <p class="status shipped">{{ $taken_jual->status }}</p>
@@ -353,8 +353,8 @@
                             <tr>
                                 <td> {{ $loop->iteration }} </td>
                                 <td> {{ $tugas->nama_penerima }}</td>
-                                <td> {{ $tugas->notabeli->alamat_customer }} </td>
-                                <td> {{ $tugas->notabeli->created_at }}</td>
+                                <td> {{ $tugas->nota_beli->alamat_customer }} </td>
+                                <td> {{ $tugas->nota_beli->created_at }}</td>
                                 <td> {{ $tugas->jenis_tugas }}</td>
                                 <td>
                                     <p class="status pending">{{ $tugas->status }}</p>
@@ -371,8 +371,8 @@
                             <tr>
                                 <td> {{ $loop->iteration }} </td>
                                 <td> {{ $tugas_jual->nama_penerima }}</td>
-                                <td> {{ $tugas_jual->notajual->alamat }} </td>
-                                <td> {{ $tugas_jual->notajual->created_at }}</td>
+                                <td> {{ $tugas_jual->nota_jual->alamat }} </td>
+                                <td> {{ $tugas_jual->nota_jual->created_at }}</td>
                                 <td> {{ $tugas_jual->jenis_tugas }}</td>
                                 <td>
                                     <p class="status pending">{{ $tugas_jual->status }}</p>
@@ -460,13 +460,13 @@
                 </div>
                 <div class="modal-body">
                     <img src="{{ asset('images/petalokasi.jpg') }}" style="width: 500px;">
-                    <p>Id Nota: {{ $taken->notabeli_id }}</p>
-                    <p>Alamat: {{ $taken->notabeli->alamat_customer }}</p>
+                    <p>Id Nota: {{ $taken->nota_beli_id }}</p>
+                    <p>Alamat: {{ $taken->nota_beli->alamat_customer }}</p>
                     <p>Nama penerima: {{ $taken->nama_penerima }}</p>
                     <p>Jenis tugas: {{ $taken->jenis_tugas }}</p>
 
                     <!-- Deskripsi Barang -->
-                    @foreach ($taken->notabeli->barang as $barang)
+                    @foreach ($taken->nota_beli->barang as $barang)
                     <p>Nama barang: {{$barang->nama}}</p>
                     <p>Jumlah barang: {{ $barang->pivot->jumlah }}</p>
                     @endforeach
@@ -475,7 +475,7 @@
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <form method="post" action="{{ route('tugasSelesai', ['idTugas' => $taken->id]) }}">
                         @csrf
-                        <input type="hidden" name="notaBeliId" value="{{ $taken->notabeli_id }}">
+                        <input type="hidden" name="notaBeliId" value="{{ $taken->nota_beli_id }}">
                         <button type="submit" id="btn-TugasSelesai" class="btn btn-success">Tugas Selesai</button>
                     </form>
                 </div>
@@ -496,14 +496,14 @@
                 </div>
                 <div class="modal-body">
                     <img src="{{ asset('images/petalokasi.jpg') }}" style="width:500px">
-                    <p>Nomor Nota: {{ $taken_jual->notajual_id }}</p>
-                    <p>Alamat: {{ $taken_jual->notajual->alamat }}</p>
+                    <p>Nomor Nota: {{ $taken_jual->nota_jual_id }}</p>
+                    <p>Alamat: {{ $taken_jual->nota_jual->alamat }}</p>
                     <p>Nama penerima: {{ $taken_jual->nama_penerima }}</p>
                     <p>Jenis tugas: {{ $taken_jual->jenis_tugas }}</p>
 
                     <!-- Deskripsi Barang -->
-                    <p>Nama barang: {{$taken_jual->notajual->nama}}</p>
-                    <p>Harga barang: {{ $taken_jual->notajual->harga }}</p>
+                    <p>Nama barang: {{$taken_jual->nota_jual->nama}}</p>
+                    <p>Harga barang: {{ $taken_jual->nota_jual->harga }}</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -531,13 +531,13 @@
                 </div>
                 <div class="modal-body">
                     <img src="{{ asset('images/petalokasi.jpg') }}" style="width:500px">
-                    <p>Nomor Nota: {{ $tugas->notabeli_id }}</p>
-                    <p>Alamat: {{ $tugas->notabeli->alamat_customer }}</p>
+                    <p>Nomor Nota: {{ $tugas->nota_beli_id }}</p>
+                    <p>Alamat: {{ $tugas->nota_beli->alamat_customer }}</p>
                     <p>Nama penerima: {{ $tugas->nama_penerima }}</p>
                     <p>Jenis tugas: {{ $tugas->jenis_tugas }}</p>
 
                     <!-- Deskripsi Barang -->
-                    @foreach ($tugas->notabeli->barang as $barang)
+                    @foreach ($tugas->nota_beli->barang as $barang)
                     <p>Nama barang: {{$barang->nama}}</p>
                     <p>Jumlah barang: {{ $barang->pivot->jumlah }}</p>
                     @endforeach
@@ -565,14 +565,14 @@
                 </div>
                 <div class="modal-body">
                     <img src="{{ asset('images/petalokasi.jpg') }}" style="width:500px">
-                    <p>Nomor Nota: {{ $tugas_jual->notabeli_id }}</p>
-                    <p>Alamat: {{ $tugas_jual->notajual->alamat }}</p>
+                    <p>Nomor Nota: {{ $tugas_jual->nota_beli_id }}</p>
+                    <p>Alamat: {{ $tugas_jual->nota_jual->alamat }}</p>
                     <p>Nama penerima: {{ $tugas_jual->nama_penerima }}</p>
                     <p>Jenis tugas: {{ $tugas_jual->jenis_tugas }}</p>
 
                     <!-- Deskripsi Barang -->
-                    <p>Nama barang: {{$tugas_jual->notajual->nama}}</p>
-                    <p>Harga barang: {{ $tugas_jual->notajual->harga }}</p>
+                    <p>Nama barang: {{$tugas_jual->nota_jual->nama}}</p>
+                    <p>Harga barang: {{ $tugas_jual->nota_jual->harga }}</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

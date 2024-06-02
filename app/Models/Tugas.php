@@ -14,17 +14,17 @@ class Tugas extends Model
     protected $table = 'tugas';
     protected $fillable = [
         'jenis_tugas',
-        'notajual_id',
-        'notabeli_id',
+        'nota_jual_id',
+        'nota_beli_id',
         'nama_penerima',
         'status',
     ];
 
     
-    public function notabeli(): BelongsTo{
+    public function nota_beli(): BelongsTo{
         return $this->belongsTo(NotaBeli::class);
     }
-    public function notajual(): BelongsTo{
+    public function nota_jual(): BelongsTo{
         return $this->belongsTo(NotaJual::class);
     }
 }

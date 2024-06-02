@@ -20,14 +20,10 @@ use App\Models\NotaJual;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 // Customer
-Route::get('/customer', [CustomerController::class, 'index']);
-Route::group(['prefix' => 'customer', 'as' => 'customer.'], function () {
+Route::group(['as' => 'customer.'], function () {
     Route::get('/', [CustomerController::class, 'index'])->name('index');
+    Route::get('history', [CustomerController::class, 'history'])->name('history');
     Route::resource('beli', NotaBeliController::class)->only(['index', 'create', 'store']);
     Route::resource('jual', NotaJualController::class)->only(['index', 'create', 'store']);
 });

@@ -1,64 +1,7 @@
 @extends('layouts.customer')
 
 @section('content')
-    <h1 class="text-center my-3">Wellcome {{ auth()->guard('customer')->user()->name }}</h1>
-
-    @include('components.alert')
-
-    <div class="row row-cols-1 row-cols-lg-2 align-items-stretch g-4 py-5">
-        {{-- beli --}}
-        <div class="col">
-            <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
-                style="background-image: url('{{ asset('images/beli.jpg') }}'); background-size: cover; background-position: center;">
-                <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
-                    <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Beli Barang</h3>
-                    <ul class="d-flex list-unstyled mt-auto">
-                        <a href="{{ route('customer.beli.index') }}" class="text-white">
-                            <li class="d-flex align-items-center me-3">
-                                <i class="bi bi-bag-fill me-1"></i>
-                                <small>Beli Sekarang</small>
-                            </li>
-                        </a>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        {{-- jual --}}
-        <div class="col">
-            <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
-                style="background-image: url('{{ asset('images/jual.jpg') }}'); background-size: cover; background-position: center;">
-                <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
-                    <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Jual Barang</h3>
-                    <a href="{{ route('customer.jual.index') }}" class="text-white">
-                        <li class="d-flex align-items-center">
-                            <i class="bi bi-box-fill me-1"></i>
-                            <small>Jual Sekarang</small>
-                        </li>
-                    </a>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        {{-- lihat nota --}}
-        <div class="col">
-            <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
-                style="background-image: url('{{ asset('images/nota.jpg') }}'); background-size: cover; background-position: center;">
-                <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
-                    <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Lihat History</h3>
-                    <ul class="d-flex list-unstyled mt-auto">
-                        <a href="{{ route('customer.history') }}" class="text-white">
-                            <li class="d-flex align-items-center">
-                                <i class="bi bi-file-earmark-fill me-1"></i>
-                                <small>Lihat History Sekarang</small>
-                            </li>
-                        </a>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+    <h1 class="text-center">History</h1>
 
     @if ($notaBeli->count() > 0)
         <section>

@@ -1,4 +1,11 @@
 const modalBeli = document.getElementById("modalBeli");
+const modalTitle = modalBeli.querySelector(".modal-title");
+const namaModal = modalBeli.querySelector(".modal-body #nama");
+const hargaModal = modalBeli.querySelector(".modal-body #harga");
+const stockModal = modalBeli.querySelector(".modal-body #stock");
+const quantity = modalBeli.querySelector("#quantity");
+const fotoModal = modalBeli.querySelector(".modal-body #foto");
+const deskripsiModal = modalBeli.querySelector(".modal-body #deskripsi");
 const table = document.getElementById("keranjang");
 
 if (modalBeli) {
@@ -11,13 +18,8 @@ if (modalBeli) {
         const harga = button.getAttribute("data-harga");
         const stock = button.getAttribute("data-stock");
         const id = button.getAttribute("data-id");
-
-        // Update the modal's content.
-        const modalTitle = modalBeli.querySelector(".modal-title");
-        const namaModal = modalBeli.querySelector(".modal-body #nama");
-        const hargaModal = modalBeli.querySelector(".modal-body #harga");
-        const stockModal = modalBeli.querySelector(".modal-body #stock");
-        const quantity = modalBeli.querySelector("#quantity");
+        const foto = button.getAttribute("data-foto");
+        const detail = button.getAttribute("data-detail");
 
         modalTitle.textContent = `Beli Barang - ${nama}`;
         namaModal.textContent = nama;
@@ -26,6 +28,8 @@ if (modalBeli) {
         modalBeli.setAttribute("data-id", id);
         quantity.min = 0;
         quantity.max = stock;
+        fotoModal.src = foto;
+        deskripsiModal.textContent = detail;
 
         // Check if the selected item is already in the table
         const rows = table.querySelectorAll("tbody tr");

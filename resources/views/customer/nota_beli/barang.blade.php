@@ -48,8 +48,9 @@
 
         <div class="row justify-content-center g-3">
             @foreach ($barang as $item)
-                <div class="col-10 col-sm-6 col-md-4">
+                <div class="col-10 col-md-6">
                     <div class="card shadow">
+                        <img src="{{ $item->foto }}" class="card-img-top" style="height: 150px; object-fit: cover;">
                         <div class="card-body">
                             <h5 class="card-title text-center">{{ $item->nama }}</h5>
                             <p class="card-text">
@@ -60,7 +61,9 @@
                                 <button class="btn btn-outline-primary rounded-5" data-bs-toggle="modal"
                                     data-bs-target="#modalBeli" data-nama="{{ $item->nama }}"
                                     data-harga="{{ $item->harga }}" data-stock="{{ $item->stock }}"
-                                    data-id="{{ $item->id }}">
+                                    data-id="{{ $item->id }}"
+                                    data-foto="{{ $item->foto }}"
+                                    data-detail="{{ $item->detail }}">
                                     <i class="bi bi-bag-plus-fill"></i>
                                 </button>
                             </div>
@@ -87,11 +90,15 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p>
-                        Nama Barang : <span id="nama"></span><br>
-                        Harga : <span id="harga"></span><br>
-                        Stock : <span id="stock"></span>
-                    </p>
+                    <img src="" id="foto" class="img-fluid" alt="Product Image" style="height: 200px; width:100%; object-fit: cover;">
+                    <div>
+                        <p>
+                            Nama Barang : <span id="nama"></span><br>
+                            Harga : <span id="harga"></span><br>
+                            Stock : <span id="stock"></span>
+                        </p>
+                        <p id="deskripsi"></p>
+                    </div>
 
                     {{-- input number --}}
                     <div class="form-floating">

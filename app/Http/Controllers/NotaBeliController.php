@@ -57,7 +57,7 @@ class NotaBeliController extends Controller
         ->value('name');
         $create_tugas = Tugas::create([
             'jenis_tugas' => 'Pengantaran',
-            'notabeli_id' => $id_nota,
+            'nota_beli_id' => $id_nota,
             'nama_penerima' => $nama_customer,
             'status' => 'belum_diambil'
         ]);

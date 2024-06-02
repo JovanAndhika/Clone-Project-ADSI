@@ -75,7 +75,7 @@ class DatabaseSeeder extends Seeder
             'nama' => 'barang legendaris',
             'foto' => 'exclusive_path',
             'status' => 1,
-            'alamat_customer' => 'tidak rahasia',
+            'alamat' => 'tidak rahasia',
             'harga' => 12000,
             'customer_id' => 1,
             'wirausaha_id' => 1,
@@ -120,14 +120,14 @@ class DatabaseSeeder extends Seeder
 
         // Dummy tabel nota_juals
         DB::table('nota_juals')->insert([
-            ['nama'=> 'barang legendaris', 'foto' => 'exclusive_path', 'status' => 1, 'alamat_customer' => 'tidak rahasia', 'harga' => 12000, 'customer_id' => 1, 'wirausaha_id' => 1, 'created_at' => now(), 'updated_at' => now()],
-            ['nama'=> 'barang legendaris dua', 'foto' => 'exclusive_path', 'status' => 1, 'alamat_customer' => 'rahasia', 'harga' => 14000, 'customer_id' => 1, 'wirausaha_id' => 2, 'created_at' => now(), 'updated_at' => now()]
+            ['nama'=> 'barang legendaris', 'foto' => 'exclusive_path', 'status' => 1, 'alamat' => 'tidak rahasia', 'harga' => 12000, 'customer_id' => 1, 'wirausaha_id' => 1, 'created_at' => now(), 'updated_at' => now()],
+            ['nama'=> 'barang legendaris dua', 'foto' => 'exclusive_path', 'status' => 1, 'alamat' => 'rahasia', 'harga' => 14000, 'customer_id' => 1, 'wirausaha_id' => 2, 'created_at' => now(), 'updated_at' => now()]
         ]);
 
         // Dummy Tugas
         Tugas::create([
             'jenis_tugas' => 'Pengantaran',
-            'notabeli_id' => 1,
+            'nota_beli_id' => 1,
             'nama_penerima' => 'Josh Due',
             'status' => 'belum_diambil',
             'created_at' => now(),
@@ -135,7 +135,7 @@ class DatabaseSeeder extends Seeder
         ]);
         Tugas::create([
             'jenis_tugas' => 'Pengantaran',
-            'notabeli_id' => 2,
+            'nota_beli_id' => 2,
             'nama_penerima' => 'John Doe',
             'status' => 'berlangsung',
             'created_at' => now(),
@@ -143,7 +143,7 @@ class DatabaseSeeder extends Seeder
         ]);
         Tugas::create([
             'jenis_tugas' => 'Penjemputan',
-            'notajual_id' => 1,
+            'nota_jual_id' => 1,
             'nama_penerima' => 'Josh Row',
             'status' => 'belum_diambil',
             'created_at' => now(),
@@ -151,7 +151,7 @@ class DatabaseSeeder extends Seeder
         ]);
         Tugas::create([
             'jenis_tugas' => 'Penjemputan',
-            'notajual_id' => 2,
+            'nota_jual_id' => 2,
             'nama_penerima' => 'John Column',
             'status' => 'berlangsung',
             'created_at' => now(),

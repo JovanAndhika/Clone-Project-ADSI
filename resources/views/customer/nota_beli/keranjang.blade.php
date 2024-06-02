@@ -1,7 +1,7 @@
 @extends('layouts.customer')
 
 @section('content')
-    <h1 class="text-center">Keranjang</h1>
+    <h1 class="text-center">Pembayaran</h1>
 
     <section>
         {{-- list barang --}}
@@ -39,6 +39,9 @@
                 @enderror
                 <div id="alamatHelp" class="form-text">Alamat tujuan barang akan dikirimkan</div>
             </div>
+            <p class="text-center text-danger">
+                Pembayaran akan dilakukan secara COD (Cash On Delivery)
+            </p>
             <div class="d-flex justify-content-center">
                 <button type="submit" class="btn btn-primary" onclick="resetLocalStorage()">Beli</button>
             </div>
