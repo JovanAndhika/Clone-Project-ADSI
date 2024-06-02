@@ -17,6 +17,9 @@
                 <a href="{{ route('customer.jual.index') }}"><i class="bi bi-box-fill"></i>Jual Barang</a>
             </li>
             <li>
+                <a href="{{ route('customer.history') }}"><i class="bi bi-file-earmark-fill"></i>History</a>
+            </li>
+            <li>
                 <a href="#"><i class="bi bi-door-closed-fill"></i>Logout</a>
             </li>
         </ul>
