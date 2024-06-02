@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('status')->default(0); //0 = belum dikonfimasi, 1 = approved, 2 = rejected
             $table->float('harga');
             $table->foreignId('customer_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('wirausaha_id')->nullable()->constrained()->cascadeOnDelete();
+            $table->foreignId('wirausaha_id')->nullable()->default(1)->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
