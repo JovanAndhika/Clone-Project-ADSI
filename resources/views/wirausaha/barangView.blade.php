@@ -1,10 +1,10 @@
 @extends('layouts.wirausaha')
 
 @section('content')
-    <h1 class="mx-auto text-center my-3">Product View</h1>
+    <h1 class="mx-auto text-center my-3 text-uppercase fw-bold">Product View</h1>
     @include('components.alert')
 
-    <div class="shadow-lg rounded col-7 mx-auto">
+    <div class="shadow-lg rounded col-7 mx-auto bg-secondary bg-opacity-50">
         <form action={{ @route('wirausaha.add') }} method="POST"
             class="mx-auto p-3 d-flex flex-column justify-content-center" enctype="multipart/form-data">
             @csrf
@@ -175,7 +175,7 @@
 
 @section('extras')
     <div class=" container mx-auto text-center">
-        <div class=" d-inline-block shadow-lg p-3">
+        <div class=" d-inline-block shadow-lg p-3 bg-light bg-opacity-75 rounded">
             <table class="d-block table table-hover table-bordered table-striped mx-auto w-100" id="barangtable">
                 <thead class="w-100">
                     <tr>

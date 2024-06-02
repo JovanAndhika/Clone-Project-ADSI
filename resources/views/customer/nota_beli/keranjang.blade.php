@@ -1,9 +1,9 @@
 @extends('layouts.customer')
 
 @section('content')
-    <h1 class="text-center">Pembayaran</h1>
+    <h1 class="mx-auto text-center my-3 text-uppercase fw-bold">Pembayaran</h1>
 
-    <section>
+    <div class=" shadow-lg rounded bg-light bg-opacity-50 p-3">
         {{-- list barang --}}
         <h2>List Barang</h2>
         <div class="table-responsive">
@@ -22,9 +22,9 @@
             </table>
         </div>
         <p class="text-center">Total : Rp <span id="total" class="text-bold">0</span></p>
-    </section>
+    </div>
 
-    <section>
+    <div class="p-3 mt-4 shadow-lg rounded bg-light bg-opacity-50">
         <h2>Data Pesanan</h2>
         <form action="{{ route('customer.beli.store') }}" method="POST">
             @csrf
@@ -46,7 +46,7 @@
                 <button type="submit" class="btn btn-primary" onclick="resetLocalStorage()">Beli</button>
             </div>
         </form>
-    </section>
+    </div>
 @endsection
 
 @section('js')

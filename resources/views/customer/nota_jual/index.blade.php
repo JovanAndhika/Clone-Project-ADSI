@@ -1,8 +1,8 @@
 @extends('layouts.customer')
 
 @section('content')
-    <h1 class="text-center">Jual</h1>
-    <section>
+    <h1 class="mx-auto text-center my-3 text-uppercase fw-bold">Jual</h1>
+    <div class=" shadow-lg rounded bg-light bg-opacity-50 p-3">
         <form action="{{ route('customer.jual.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <label for="namaBarang" class="form-label">Nama Barang</label>
@@ -48,5 +48,5 @@
                 <button type="submit" class="btn btn-primary">Jual Barang</button>
             </div>
         </form>
-    </section>
+    </div>
 @endsection

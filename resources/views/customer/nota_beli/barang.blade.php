@@ -1,10 +1,10 @@
 @extends('layouts.customer')
 
 @section('content')
-    <h1 class="text-center mb-5">Beli Barang</h1>
+    <h1 class="mx-auto text-center my-3 mb-5 text-uppercase fw-bold">Beli Barang</h1>
 
     {{-- list keranjang --}}
-    <section>
+    <div class=" shadow-lg rounded bg-light bg-opacity-50 p-3">
         <h2 class="text-center">My Cart</h2>
         <div class="table-responsive">
             <table class="table" id="keranjang">
@@ -30,11 +30,11 @@
         <div class="d-flex justify-content-center">
             <button class="btn btn-primary" onclick="beliBarang()">Beli</button>
         </div>
-    </section>
+    </div>
 
 
     {{-- list beli barang --}}
-    <section>
+    <div class=" shadow-lg rounded bg-light bg-opacity-50 p-3 mt-4">
         <h2 class="text-center">You Might Interest...</h2>
 
         {{-- search --}}
@@ -77,10 +77,10 @@
         <div class="d-flex justify-content-center mt-5">
             {{ $barang->links() }}
         </div>
-    </section>
+    </div>
 @endsection
 
-@section('extras')
+@section('modal')
     {{-- modal beli --}}
     <div class="modal fade" id="modalBeli" tabindex="-1" data-id="0">
         <div class="modal-dialog modal-dialog-centered">

@@ -1,10 +1,10 @@
 @extends('layouts.wirausaha')
 
 @section('content')
-    <h1 class="text-center">Offer Barang</h1>
+    <h1 class="mx-auto text-center my-3 text-uppercase fw-bold">Offer Barang</h1>
     @include('components.alert')
 
-    <section>
+    <div class="p-3 my-2 container rounded shadow-lg bg-secondary bg-opacity-50">
         <div class="table-responsive">
             <table class="table">
                 <thead>
@@ -77,7 +77,7 @@
                 </tbody>
             </table>
         </div>
-    </section>
+    </div>
 @endsection
 
 

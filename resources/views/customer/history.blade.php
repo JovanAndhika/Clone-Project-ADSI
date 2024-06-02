@@ -1,10 +1,10 @@
 @extends('layouts.customer')
 
 @section('content')
-    <h1 class="text-center">History</h1>
+    <h1 class="mx-auto text-center my-3 text-uppercase fw-bold">History</h1>
 
     @if ($notaBeli->count() > 0)
-        <section>
+        <div class=" shadow-lg rounded bg-light bg-opacity-50 p-3">
             <h2 class="text-center">Pesanan In Progress</h2>
             <div class="table-responsive">
                 <table class="table">
@@ -41,11 +41,11 @@
                     </tbody>
                 </table>
             </div>
-        </section>
+        </div>
     @endif
 
     @if ($notaJual->count() > 0)
-        <section>
+        <div class=" shadow-lg rounded bg-light bg-opacity-50 p-3 mt-4">
             <h2 class="text-center">Barang Jual In Progress</h2>
             <div class="table-responsive">
                 <table class="table">
@@ -98,7 +98,7 @@
     @endif
 @endsection
 
-@section('extras')
+@section('modal')
     {{-- modal foto --}}
     <div class="modal fade" id="modalFotoBarang" tabindex="-1" data-id="0">
         <div class="modal-dialog modal-dialog-centered">
