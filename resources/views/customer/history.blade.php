@@ -108,7 +108,22 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <img src="" style="max-width:100%">
+                    <div style="    
+                        position: relative;
+                        width: 100%;
+                        padding-top: 80%;
+                        /* This sets the aspect ratio to 4:3. Adjust this value to get the aspect ratio you want. */
+                        overflow: hidden;
+                        transform-style: preserve-3d;
+                        transition: transform 1s;"
+                    >
+                        <img src="" id="foto" class=" mx-auto" style="object-fit: cover;position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        backface-visibility: hidden;">
+                    </div>
                 </div>
             </div>
         </div>
