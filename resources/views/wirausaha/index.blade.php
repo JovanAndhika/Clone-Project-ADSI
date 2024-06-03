@@ -1,7 +1,7 @@
 @extends('layouts.wirausaha')
 
 @section('content')
-    <div class="d-flex align-items-center justify-content-center" style="min-height:100vh">
+    <div class="d-flex align-items-center justify-content-center" style="min-height:500px">
         <div class="col-7 rounded bg-light py-2 bg-opacity-50">
 
             <h1 class="mx-auto text-center my-3 text-uppercase fw-bold">WELCOME</h1>

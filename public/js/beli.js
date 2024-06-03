@@ -28,7 +28,14 @@ if (modalBeli) {
         modalBeli.setAttribute("data-id", id);
         quantity.min = 0;
         quantity.max = stock;
-        fotoModal.src = foto;
+        if(foto.length === 0) {
+            fotoModal.src = 'https://source.unsplash.com/random/'+getRandomInt(1, 100);
+            // console.log(foto);
+
+        }
+        else {
+            fotoModal.src = 'storage/'+foto;
+        }
         deskripsiModal.textContent = detail;
 
         // Check if the selected item is already in the table
@@ -47,6 +54,13 @@ if (modalBeli) {
         quantity.value = existingQuantity;
     });
 }
+
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 
 // Load cart data from local storage
 window.addEventListener("load", () => {
