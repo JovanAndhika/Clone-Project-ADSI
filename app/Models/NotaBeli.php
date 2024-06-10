@@ -23,7 +23,7 @@ class NotaBeli extends Model
     // update status lunas bayar
     public function setStatusPembayaran()
     {
-        $this->status = true;
+        $this->status = 1;
         $this->save();
     }
 
