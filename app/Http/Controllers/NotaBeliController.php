@@ -43,28 +43,8 @@ class NotaBeliController extends Controller
             'customer_id' => auth()->guard('customer')->id(),
         ]);
 
-        
-        // Create Tugas Jovan
-        $id_nota = NotaBeli::select('id')
-        ->where('alamat_customer', $request->alamatCustomer)
-        ->where('customer_id', auth()->guard('customer')->id())
-        ->orderByDesc('created_at')
-        ->limit(1)
-        ->value('id');
-        $nama_customer = Customer::select('name')
-        ->where('id', auth()->guard('customer')->id())
-        ->limit(1)
-        ->value('name');
-        $create_tugas = Tugas::create([
-            'jenis_tugas' => 'Pengantaran',
-            'nota_beli_id' => $id_nota,
-            'nama_penerima' => $nama_customer,
-            'status' => 'belum_diambil'
-        ]);
-
-
+        // create detail nota
         $barang = json_decode($request->barang);
-
         foreach ($barang as $item) {
             $temp = Barang::find($item->id);
             $temp->stock -= $item->quantity;
@@ -73,6 +53,16 @@ class NotaBeliController extends Controller
                 'jumlah' => $item->quantity
             ]);
         }
+
+        // Create Tugas Jovan
+        $id_nota = $notaBeli->id;
+        $nama_customer = auth()->guard('customer')->user()->name;
+        $create_tugas = Tugas::create([
+            'jenis_tugas' => 'Pengantaran',
+            'nota_beli_id' => $id_nota,
+            'nama_penerima' => $nama_customer,
+            'status' => 'belum_diambil'
+        ]);
 
         return to_route('customer.index')->with('success', 'Pesanan berhasil dibuat!');
     }
