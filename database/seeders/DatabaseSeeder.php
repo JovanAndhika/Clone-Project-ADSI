@@ -25,24 +25,12 @@ class DatabaseSeeder extends Seeder
 
         $admin = [
             [
-                'name' => 'Fellix',
-                'email' => 'c14220039@john.petra.ac.id'
+                'name' => 'admin',
+                'email' => 'admin@gmail.com'
             ],
-            [
-                'name' => 'Marvel',
-                'email' => 'c14220223@john.petra.ac.id'
-            ],
-            [
-                'name' => 'Jovan',
-                'email' => 'c14220013@john.petra.ac.id'
-            ],
-            [
-                'name' => 'Nicholas',
-                'email' => 'c14220142@john.petra.ac.id'
-            ]
         ];
         foreach ($admin as $wirausaha) {
-            $wirausaha['password'] = bcrypt('password');
+            $wirausaha['password'] = bcrypt('12345678');
             \App\Models\Wirausaha::create($wirausaha);
         }
         \App\Models\Wirausaha::factory()->create();
