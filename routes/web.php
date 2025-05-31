@@ -29,7 +29,7 @@ Route::group(['as' => 'customer.'], function () {
 });
 
 // Driver
-Route::get('/driver', [TugasController::class, 'index']);
+Route::get('/driver', [TugasController::class, 'index'])->name('driver.index');
 Route::post('/driver/ambilTugas/{idTugas}', [TugasController::class, 'ambilTugas'])->name('ambilTugas');
 Route::post('/driver/tugasSelesai/{idTugas}', [TugasController::class, 'tugasSelesai'])->name('tugasSelesai');
 Route::post('/driver/tugasSelesaiAntar/{idTugas}', [TugasController::class, 'tugasSelesaiAntar'])->name('tugasSelesaiAntar');

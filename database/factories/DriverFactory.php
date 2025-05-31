@@ -18,7 +18,7 @@ class DriverFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail,
+            'email' => fake()->safeEmail,
             'password' => bcrypt('password'),
         ];
     }

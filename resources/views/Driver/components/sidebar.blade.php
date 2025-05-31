@@ -20,7 +20,7 @@
                 <a href="#"><i class="bi bi-gear-fill"></i>Pengaturan</a>
             </li>
             <li>
-                <a href="#"><i class="bi bi-door-closed-fill"></i>Logout</a>
+                <a href="{{ route('customer.index') }}"><i class="bi bi-door-closed-fill"></i>Back</a>
             </li>
         </ul>
     </nav>
