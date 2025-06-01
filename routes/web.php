@@ -19,6 +19,8 @@ use App\Http\Controllers\WirausahaController;
 |
 */
 
+Route::get('/test', [TugasController::class, 'test']);
+
 // Customer
 Route::group(['as' => 'customer.'], function () {
     Route::get('/', [CustomerController::class, 'index'])->name('index');

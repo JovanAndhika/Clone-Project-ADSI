@@ -9,6 +9,11 @@ use App\Models\NotaBeli;
 
 class TugasController extends Controller
 {
+    public function test(){
+        return view('test');
+    }
+
+
     public function index()
     {
         // login as driver
