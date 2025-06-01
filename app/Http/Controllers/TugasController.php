@@ -59,7 +59,7 @@ class TugasController extends Controller
         } catch (\Throwable $e) {
             return response()->json([
                 'error' => $e->getMessage(),
-                // 'trace' => $e->getTrace()
+                'trace' => $e->getTrace()
             ], 500);
         }
     }
