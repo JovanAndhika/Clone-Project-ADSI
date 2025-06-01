@@ -54,12 +54,12 @@ class TugasController extends Controller
                 ->with('nota_jual')
                 ->get();
 
-            // return view('Driver.tugas', [
-                // 'list_tugas_beli_berlangsung' => $list_tugas_beli_berlangsung,
-                // 'list_tugas_beli' => $list_tugas_beli,
-                // 'list_tugas_jual_berlangsung' => $list_tugas_jual_berlangsung,
-                // 'list_tugas_jual' => $list_tugas_jual,
-            // ]);
+            return view('kurir.tugas', [
+                'list_tugas_beli_berlangsung' => $list_tugas_beli_berlangsung,
+                'list_tugas_beli' => $list_tugas_beli,
+                'list_tugas_jual_berlangsung' => $list_tugas_jual_berlangsung,
+                'list_tugas_jual' => $list_tugas_jual,
+            ]);
             // return view('test');
         } catch (\Throwable $e) {
             return response()->json([
