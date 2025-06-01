@@ -9,7 +9,8 @@ use App\Models\NotaBeli;
 
 class TugasController extends Controller
 {
-    public function test(){
+    public function test()
+    {
         return view('test');
     }
 
@@ -24,41 +25,48 @@ class TugasController extends Controller
 
             // FUNCTION UNTUK AMBIL MODEL
             // 1.Tugas delivery/pengantaran menuju customer
-            $list_tugas_beli_berlangsung = Tugas::where('status', 'berlangsung')
+            $list_tugas_beli_berlangsung = Tugas::with('nota_beli.barang')
+                ->where('status', 'berlangsung')
                 ->whereHas('nota_beli', function ($query) {
                     $query->where('status', 0);
                 })
-                ->with('nota_beli.barang')
                 ->get();
 
-            $list_tugas_beli = Tugas::where('status', 'belum_diambil')
-                ->whereHas('nota_beli', function ($query) {
-                    $query->where('status', 0);
-                })
-                ->with('nota_beli.barang')
+
+            $list_tugas_beli = Tugas::with('nota_beli.barang')
+                ->where('status', 'belum_diambil')
+                ->whereHas('nota_beli', fn($query) => $query->where('status', 0))
                 ->get();
+
+
 
 
             // 2. Tugas take/penjemputan barang menuju wirausaha
-            $list_tugas_jual_berlangsung = Tugas::where('status', 'berlangsung')
-                ->whereHas('nota_jual', function ($query) {
-                    $query->where('status', 1);
-                })
-                ->with('nota_jual')
+            $listTugasJualBerlangsung = Tugas::with('nota_jual')
+                ->where('status', 'berlangsung')
+                ->whereHas(
+                    'nota_jual',
+                    fn($query) =>
+                    $query->where('status', 1)
+                )
                 ->get();
 
-            $list_tugas_jual = Tugas::where('status', 'belum_diambil')
-                ->whereHas('nota_jual', function ($query) {
-                    $query->where('status', 1);
-                })
-                ->with('nota_jual')
+
+            $listTugasJual = Tugas::with('nota_jual')
+                ->where('status', 'belum_diambil')
+                ->whereHas(
+                    'nota_jual',
+                    fn($query) =>
+                    $query->where('status', 1)
+                )
                 ->get();
+
 
             return view('kurir.tugas', [
                 'list_tugas_beli_berlangsung' => $list_tugas_beli_berlangsung,
                 'list_tugas_beli' => $list_tugas_beli,
-                'list_tugas_jual_berlangsung' => $list_tugas_jual_berlangsung,
-                'list_tugas_jual' => $list_tugas_jual,
+                'list_tugas_jual_berlangsung' => $listTugasJualBerlangsung,
+                'list_tugas_jual' => $listTugasJual,
             ]);
             // return view('test');
         } catch (\Throwable $e) {

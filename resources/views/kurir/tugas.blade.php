@@ -1,4 +1,4 @@
-@extends('layouts.driver')
+@extends('layouts.kurir')
 
 @section('content')
     <!-- Tugas Belum Diambil -->

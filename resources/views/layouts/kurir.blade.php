@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    @include('driver.components.sidebar')
+    @include('kurir.components.sidebar')
     <style>
         * {
             margin: 0;
