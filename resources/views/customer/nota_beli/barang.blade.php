@@ -116,9 +116,7 @@
 @endsection
 
 @section('js')
-<script src="{{ asset('js/beli.js') }}"></script>
-
-
+<!-- <script src="{{ asset('js/beli.js') }}"></script> -->
 
 <script>
     const modalBeli = document.getElementById("modalBeli");
@@ -382,8 +380,8 @@
             return;
         } else {
             // redirect ke halaman beli
-            window.location.href = '{{ route('
-            customer.beli.create ') }}';
+            window.location.href = '{{ route("customer.beli.create") }}';
+
         }
     }
 </script>

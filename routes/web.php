@@ -25,6 +25,7 @@ Route::group(['as' => 'customer.'], function () {
     Route::get('/', [CustomerController::class, 'index'])->name('index');
     Route::get('history', [CustomerController::class, 'history'])->name('history');
     Route::resource('beli', NotaBeliController::class)->only(['index', 'create', 'store']);
+    // Route::post('/beli/create', [NotaBeliController::class, 'create'])->name('beli.create');
     Route::resource('jual', NotaJualController::class)->only(['index', 'create', 'store']);
 });
 
