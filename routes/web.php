@@ -29,10 +29,10 @@ Route::group(['as' => 'customer.'], function () {
 });
 
 // Driver
-Route::get('/driver', [TugasController::class, 'index'])->name('driver.index');
-Route::post('/driver/ambilTugas/{idTugas}', [TugasController::class, 'ambilTugas'])->name('ambilTugas');
-Route::post('/driver/tugasSelesai/{idTugas}', [TugasController::class, 'tugasSelesai'])->name('tugasSelesai');
-Route::post('/driver/tugasSelesaiAntar/{idTugas}', [TugasController::class, 'tugasSelesaiAntar'])->name('tugasSelesaiAntar');
+Route::get('/kurir', [TugasController::class, 'index'])->name('kurir.index');
+Route::post('/kurir/ambilTugas/{idTugas}', [TugasController::class, 'ambilTugas'])->name('ambilTugas');
+Route::post('/kurir/tugasSelesai/{idTugas}', [TugasController::class, 'tugasSelesai'])->name('tugasSelesai');
+Route::post('/kurir/tugasSelesaiAntar/{idTugas}', [TugasController::class, 'tugasSelesaiAntar'])->name('tugasSelesaiAntar');
 
 
 // Wirausaha

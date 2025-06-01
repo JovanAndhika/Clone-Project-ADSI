@@ -45,13 +45,13 @@
         {{-- Driver --}}
         <div class="col">
             <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
-                style="background-image: url('{{ asset('images/driver.jpg') }}'); background-size: cover; background-position: center;">
+                style="background-image: url('{{ asset('images/kurir.jpg') }}'); background-size: cover; background-position: center;">
                 <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
-                    <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Login Driver</h3>
-                    <a href="/driver" class="text-white">
+                    <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Login Kurir</h3>
+                    <a href="/kurir" class="text-white">
                         <li class="d-flex align-items-center">
                             <i class="bi bi-box-fill me-1"></i>
-                            <small>masuk sebagai driver</small>
+                            <small>masuk sebagai kurir</small>
                         </li>
                     </a>
                     </ul>
