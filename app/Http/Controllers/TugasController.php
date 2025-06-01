@@ -50,7 +50,7 @@ class TugasController extends Controller
                 ->with('nota_jual')
                 ->get();
 
-            return view('driver.tugas', [
+            return view('Driver.tugas', [
                 'list_tugas_beli_berlangsung' => $list_tugas_beli_berlangsung,
                 'list_tugas_beli' => $list_tugas_beli,
                 'list_tugas_jual_berlangsung' => $list_tugas_jual_berlangsung,
@@ -59,7 +59,7 @@ class TugasController extends Controller
         } catch (\Throwable $e) {
             return response()->json([
                 'error' => $e->getMessage(),
-                'trace' => $e->getTrace()
+                // 'trace' => $e->getTrace()
             ], 500);
         }
     }
