@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
     {
         // dummy user
         \App\Models\Customer::factory()->create();
-        \App\Models\Driver::factory()->create();
+        \App\Models\Kurir::factory()->create();
 
         $admin = [
             [

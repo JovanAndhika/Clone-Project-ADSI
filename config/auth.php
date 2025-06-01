@@ -46,9 +46,9 @@ return [
             'provider' => 'customer',
         ],
 
-        'driver' => [
+        'kurir' => [
             'driver' => 'session',
-            'provider' => 'driver',
+            'provider' => 'kurir',
         ],
 
         'wirausaha' => [
@@ -80,9 +80,9 @@ return [
             'model' => App\Models\Customer::class,
         ],
 
-        'driver' => [
+        'kurir' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Driver::class,
+            'model' => App\Models\Kurir::class,
         ],
 
         'wirausaha' => [

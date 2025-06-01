@@ -16,8 +16,8 @@ class TugasController extends Controller
 
     public function index()
     {
-        // login as driver
-        auth()->guard('driver')->loginUsingId(1);
+        // login as kurir
+        auth()->guard('kurir')->loginUsingId(1);
 
 
         try {

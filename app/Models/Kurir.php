@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Driver extends Authenticatable
+class Kurir extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
