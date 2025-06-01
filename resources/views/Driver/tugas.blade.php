@@ -2,7 +2,7 @@
 
 @section('content')
     <!-- Tugas Belum Diambil -->
-    <!-- <section>
+    <section>
         <style>
             /* Modal konten */
             .modal-content {
@@ -306,6 +306,6 @@
             </div>
         </div>
     </div>
-    @endforeach -->
+    @endforeach
     <!-- END OF MODAL -->
 @endsection

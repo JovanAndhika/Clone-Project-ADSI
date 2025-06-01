@@ -7,7 +7,6 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\NotaJualController;
 use App\Http\Controllers\NotaBeliController;
 use App\Http\Controllers\WirausahaController;
-use App\Models\NotaJual;
 
 /*
 |--------------------------------------------------------------------------
