@@ -17,8 +17,7 @@ class TugasController extends Controller
     public function index()
     {
         // login as kurir
-        auth()->guard('kurir')->loginUsingId(1);
-
+        // auth()->guard('kurir')->loginUsingId(1);
 
         try {
             // proses logic
