@@ -31,28 +31,28 @@ class TugasController extends Controller
                 ->with('nota_beli.barang')
                 ->get();
 
-            // $list_tugas_beli = Tugas::where('status', 'belum_diambil')
-            //     ->whereHas('nota_beli', function ($query) {
-            //         $query->where('status', 0);
-            //     })
-            //     ->with('nota_beli.barang')
-            //     ->get();
+            $list_tugas_beli = Tugas::where('status', 'belum_diambil')
+                ->whereHas('nota_beli', function ($query) {
+                    $query->where('status', 0);
+                })
+                ->with('nota_beli.barang')
+                ->get();
 
 
-            // // 2. Tugas take/penjemputan barang menuju wirausaha
-            // $list_tugas_jual_berlangsung = Tugas::where('status', 'berlangsung')
-            //     ->whereHas('nota_jual', function ($query) {
-            //         $query->where('status', 1);
-            //     })
-            //     ->with('nota_jual')
-            //     ->get();
+            // 2. Tugas take/penjemputan barang menuju wirausaha
+            $list_tugas_jual_berlangsung = Tugas::where('status', 'berlangsung')
+                ->whereHas('nota_jual', function ($query) {
+                    $query->where('status', 1);
+                })
+                ->with('nota_jual')
+                ->get();
 
-            // $list_tugas_jual = Tugas::where('status', 'belum_diambil')
-            //     ->whereHas('nota_jual', function ($query) {
-            //         $query->where('status', 1);
-            //     })
-            //     ->with('nota_jual')
-            //     ->get();
+            $list_tugas_jual = Tugas::where('status', 'belum_diambil')
+                ->whereHas('nota_jual', function ($query) {
+                    $query->where('status', 1);
+                })
+                ->with('nota_jual')
+                ->get();
 
             // return view('Driver.tugas', [
                 // 'list_tugas_beli_berlangsung' => $list_tugas_beli_berlangsung,
